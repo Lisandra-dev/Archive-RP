@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Au petit hibou - nibelhiem</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <style>
+        /* === GENERAL === */
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, Monospace;
+}
+
+.pre--multiline {
+    margin-top: 4px;
+    padding: 8px;
+    border: 2px solid;
+    border-radius: 5px;    
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.mention {
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.45em;
+    height: 1.45em;
+    margin: 0 1px;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1rem;
+    height: 1rem;
+}
+
+.emoji--large {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* === INFO === */
+
+.info {
+    display: flex;
+    max-width: 100%;
+    margin: 0 5px 10px 5px;    
+}
+
+.info__guild-icon-container {
+    flex: 0;
+}
+
+.info__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.info__metadata {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.info__guild-name {
+    font-size: 1.4em;
+}
+
+.info__channel-name {
+    font-size: 1.2em;
+}
+
+.info__channel-topic {
+    margin-top: 2px;
+}
+
+.info__channel-message-count {
+    margin-top: 2px;
+}
+
+.info__channel-date-range {
+    margin-top: 2px;
+}
+
+/* === CHATLOG === */
+
+.chatlog {
+    max-width: 100%;
+    margin-bottom: 24px;
+}
+
+.chatlog__message-group {
+    display: flex;
+    margin: 0 10px;
+    padding: 15px 0;
+    border-top: 1px solid;
+}
+
+.chatlog__author-avatar-container {
+    flex: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    flex: 1;
+    min-width: 50%;
+    margin-left: 20px;
+}
+
+.chatlog__author-name {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 5px;
+    font-size: .75em;
+}
+
+.chatlog__content {
+    padding-top: 5px;
+    font-size: .9375em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 3px;
+    font-size: .8em;
+}
+
+.chatlog__attachment {
+    margin: 5px 0;
+}
+
+.chatlog__attachment-thumbnail {
+    max-width: 50%;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    max-width: 520px;
+    margin-top: 5px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    width: 100%;
+    display: flex;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.chatlog__embed-author-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 9px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 4px;
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 10px;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 4px;
+    font-size: .875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-size: .875em;
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 20px;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 10px;
+}
+
+.chatlog__embed-image {    
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 10px;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-weight: 600;
+    font-size: .75em;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 6px 2px 2px 2px;
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 6px;
+    font-size: .875em;
+}
+    </style>
+    <style>
+        /* === GENERAL === */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #839496 !important;
+}
+
+.mention {
+    color: #7289da;
+}
+
+/* === INFO === */
+
+.info__guild-name {
+    color: #ffffff;
+}
+
+.info__channel-name {
+    color: #ffffff;
+}
+
+.info__channel-topic {
+    color: #ffffff;
+}
+
+/* === CHATLOG === */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+</head>
+<body>
+    
+<div class="info">
+    <div class="info__guild-icon-container">
+        <img class="info__guild-icon" src="https://cdn.discordapp.com/icons/453162143668371456/680556210a735c360a900cddf515be3c.png" />
+    </div>
+    <div class="info__metadata">
+        <div class="info__guild-name">Au petit hibou</div>
+        <div class="info__channel-name">nibelhiem</div>
+        
+            <div class="info__channel-topic">&lt;EN COURS&gt;. Monde contemporain fantasy o&#249; il existe des m&#233;ta-humains.
+Vert : @MDK
+Gris : @Mara</div>
+
+        <div class="info__channel-message-count">84 messages</div>
+        
+    </div>
+</div>
+
+<div class="chatlog">
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">20-Jan-19 05:23 AM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">LEGENDE : 
+Vert <span class="mention" title="MDK#5587">@MDK</span> (CODE : Yaml)
+Gris : <span class="mention" title="Mara#3000">@Mara</span> 
+
+<div class="pre pre--multiline ">*Les choses sont particuli&#232;res lorsque l&#39;on est un m&#233;ta humain.
+
+Notre histoire commence dans un petit restaurant fast-food comme il en existe tant d&#39;autre, &#224; la d&#233;coration vieillotte des ann&#233;es 80, et avec des odeurs &#233;tranges que des g&#233;n&#233;rations de nettoyeur n&#39;arrivait &#224; faire partir, m&#233;lange de nourriture, de cigarette, et d&#39;autre chose encore.
+
+Mais ce n&#39;est pas le vieux b&#226;timent qui nous int&#233;resse ici, mais ce qu&#39;il s&#39;&#233;tait pass&#233; plus t&#244;t dans la matin&#233;e. Il n&#39;y avait que peu de personnes, juste certain habitu&#233;e, ainsi que le personnel. Mais la trag&#233;die &#233;tait r&#233;el.
+
+Normalement, des lois ancestrales stipulent que les humains et m&#233;ta humain ne doivent pas vraiment entrer en contact. Et l&#39;absence de don des humains pour voir autre chose que leur nombril avait fait dispara&#238;tre les m&#233;ta de leur esprit. Au grand bonheur de ses derniers, d&#39;ailleurs.
+
+Malheureusement, un monstre avait &#233;t&#233; r&#233;veill&#233;. Nul ne savait comment, mais il avait devorer une partie des gens avant de dispara&#238;tre. 
+
+Un cordon de policier entourait le b&#226;timent. 
+
+Elle observait tout cela de ses yeux dor&#233;s. Elle se faisait facilement passer pour une humaine, puisqu&#39;elle l&#39;&#233;tait &#224; moiti&#233;. Plut&#244;t jeune, les cheveux roux attach&#233;s en une tresse couronne, elle &#233;tait mince et muscl&#233;e. Son petit nez se fron&#231;a en sentant les odeurs.
+
+Elle &#233;tait v&#234;tu d&#39;une veste rouge, courte, ce qui lui avait valu un surnom et une r&#233;putation chez les m&#233;ta.*
+
+- Putain. *l&#226;cha-t-elle*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="28-Jan-19 09:54 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">26-Jan-19 10:12 AM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* autour du cordon, une poign&#233;e de policiers sont dispers&#233;s. La plupart sont humains, ordinaires, mais comme toujours, il y a un m&#233;ta dans l&#39;unit&#233;. Au cas o&#249;, si on veut. Vars, notre homme, en est un. Curieusement grand, sans &#234;tre anormal, aux &#233;paules larges et mains noueuses. Son visage est d&#39;une certaine beaut&#233;, tout en angles, avec des yeux verts profonds, et un petit nez droit. Sa veste informe d&#39;officier laisse tout de m&#234;me deviner un physique sec mais puissant. 
+
+Et en l&#39;occurrence, il est a quelques m&#232;tres de la jeune femme, avec laquelle il &#233;change un regard lourd de sous-entendus. *</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:29 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle soupire*
+- Je pense qu&#39;il est toujours &#224; l&#39;int&#233;rieur. Tu as des info?
+*Elle semblait pr&#234;te &#224; tout traverser pour aller d&#233;truire le monstre. On sentait son &#233;trange magie autour d&#39;elle.
+
+On pourrait d&#39;&#233;crire la jeune femme comme une faiseuse de miracle. Capable de faire appara&#238;tre n&#39;importe quoi de son esprit, tout en ayant des dons incroyable de telekinesie. Cependant. Elle n&#39;&#233;tait pas un miracle mais issue de ce qu&#39;on nommait des Daemon. Les cr&#233;ateur des monstres, entre autre. Et elle s&#39;&#233;tait sp&#233;cialis&#233;e dans la chasse de ses derniers.
+
+Elle se nommait Karna Amaranth. *</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:29 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il cligne des yeux calmement, et ne r&#233;pond pas pendant quelques instants. Elle a le sentiment qu&#39;il a peut &#234;tre quitt&#233; son corps quelques instants. Ou autre chose. 
+
+Il sort une cigarette. Ils se connaissent de loin, plus de r&#233;putation que personnellement. *
+
+- Oui, il est toujours a l&#39;int&#233;rieur. Mais je ne peux pas te laisser y aller, cette fois. J&#39;ai des ordres.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:29 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Et tu crois que je vais t&#39;&#233;couter ? 
+*Elle a un leger sourire, un air de d&#233;fi aux visage*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:30 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il soupire l&#233;g&#232;rement.*
+- j&#39;aimerais. Et j&#39;aimerais aussi que tu me laisses faire mon travail. C&#39;est pas seulement mon choix.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:30 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Et sinon quoi ? Je laisse les gens d&#233;couvrir &#231;a ?
+
+*Elle soupire lorsqu&#39;on entend une explosion et les vitres du b&#226;timent explose*
+
+- Hm.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:30 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">- Non, tu laisses quelqu&#39;un avec une licence s&#39;en occuper. Quelqu&#39;un qui ne causera pas de d&#233;g&#226;ts collat&#233;raux. 
+* Il soupire en entendant l&#39;explosion.*
+- &#233;coute. J&#39;ai rien contre toi, vraiment. Mais je sais ce qu&#39;il s&#39;est pass&#233;, je ne veux pas d&#39;une autre catastrophe.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:30 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle hausse un sourcil*
+- Ah, qu&#39;est ce qu&#39;on dit sur moi par hasard ?</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:30 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il hausse les &#233;paules, d&#39;un air fatigu&#233;*
+- tu es efficace. Mais pas exactement prudente. Et tu as tendance &#224; causer des bless&#233;s chez les H. Enfin, au moins une fois, que je sache.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:31 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Hm-Hm. Et tu crois que &#231;a causera pas des d&#233;g&#226;ts chez eux ? Ils peuvent m&#234;me pas le combattre. Et moi, je peux le faire dispara&#238;tre. Tu comptes attendre qu&#39;il y ait des morts ?
+
+*Elle commence &#224; se pr&#233;parer &#224; piquer un sprint vers le b&#226;timent*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:31 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il soupire, et jette sa cigarette*
+- pas comme si je pouvais vraiment t&#39;en emp&#234;cher. 
+* Il lui jette une oreillette*
+- je vais te guider. Vas-y.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:31 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle a un grand sourire quand elle attrape l&#39;oreillette, qu&#39;elle place &#224; son oreille (ce qu&#39;on fait souvent avec les oreillettes). Elle se met ensuite &#224; courir, &#224; une vitesse &#233;videmment largement sup&#233;rieur &#224; n&#39;importe quel humain pas tr&#232;s entra&#238;n&#233;. Impossible de l&#39;attraper, elle esquive tous les policiers et saute par dessus le cordon sans aucun probl&#232;me. 
+
+Elle rentre ensuite dans le b&#226;timent, et invoque ses flingues, comme &#224; son habitude.*
+
+- Ouah. C&#39;est une vraie boucherie. Je t&#39;&#233;coute.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:33 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il la laisse partir, et s&#39;adosse a la voiture. Il fait signe a ses coll&#232;gues de la laisser faire. Il ferme les yeux, et quitte son corps.
+
+Il voyage d&#39;une mani&#232;re immat&#233;rielle, visualisant aussi bien le monde r&#233;el que les &#233;motions, sentiments et masses psychiques. Il est au dessus d&#39;elle, invisible, mais elle a une certaine sensation de sa pr&#233;sence. 
+
+Elle entend sa voix gr&#233;siller dans l&#39;oreillette.*
+- d&#39;abord, au fond du couloir. Troisi&#232;me porte. Il y en a deux petits, vers le fond de la pi&#232;ce. Elle est plut&#244;t grande mais tu aura pas mal de couverture.
+* Un instant passe*
+- c&#39;est pas tr&#232;s professionnel d&#39;avoir des pens&#233;es pareilles, dis-donc.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:32 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- De quelle pens&#233;e tu parles ? 
+*Elle suit ses indications &#224; la lettre*
+- Tu sais &#224; quoi il ressemble ? Quelles sont ses capacit&#233;s ? Tu as l&#39;air de prendre beaucoup de pr&#233;cotions. Ou alors tu as peur qu&#39;on me voit faire des tours de magie ?</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:32 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* elle entend un l&#233;ger rire dans l&#39;oreillette.*
+- oh, tu sais de quoi je parle. Mais je sais, c&#39;est pas poli de lire les pens&#233;es sans demander. 
+* Petit silence*
+- je pense qu&#39;ils sont capables de faire des pyromancies. Mais ils sont pas tr&#232;s rapides, tu devrais pas avoir de probl&#232;me a les &#233;viter.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:33 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Attend! Y&#39;en a plusieurs ? Moi qui pensait &#224; une baston de folie...</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:32 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">- oui, deux, je te l&#39;ai dit tout a l&#39;heure. Oui, tu pensais &#224; &#231;a aussi... * Il rit l&#233;g&#232;rement. Un bruit d&#39;ignition retentit derri&#232;re la porte.*
+- attention, ils savent que tu es l&#224;.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:33 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle explose la porte par sa telekinesie et vise les deux monstres avec ses flingues. Il ressemble &#224; des sortes de petit gobelin, pas tr&#232;s terrifiant, mis ils ont des dents. Beaucoup de dents. Et des yeux*
+- Et beh. Je me demande qui a fait ses monstres. Ils font pas tr&#232;s peur.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:33 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">27-Jan-19 01:04 AM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* les monstres grincent des dents, et imm&#233;diatement, envoient des torrents de flammes dans sa direction. Son oreillette gr&#233;sille*
+- on va le savoir tr&#232;s vite.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:25 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle fait un bond en arri&#232;re et d&#233;vie les flammes grace &#224; une sorte de bouclier telekinesite. 
+
+Elle soupire et ne r&#233;pond pas au policier, pr&#233;f&#233;rant canarder de balle les cr&#233;atures.*
+- Prions pour qu&#39;elle ne se r&#233;g&#233;n&#232;re pas.</div></span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* c&#39;est raisonnablement efficace. Ils sont pris a d&#233;pourvu, et les deux meurent rapidement. Un silence &#233;trange s&#39;installe.*
+- Je pense que leur patron ne va pas tarder.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:25 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Leur patron ? Un Daemon ? Je suis pas programm&#233;e pour leur d&#233;foncer la gueule.</div></span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">- eh bien, c&#39;est &#231;a ou t&#39;enfuir. Mais va falloir choisir vite.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:25 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- C&#39;est bizarre. D&#39;habitude ce sont des enfants qui ont mal g&#233;r&#233; leurs cauchemars.. Ou des Daemon qui sont sadiques mais ils partent souvent apr&#232;s.....</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 01:08 AM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">- en tous cas... 
+* Un grand craquement fend l&#39;air. Quelque chose appara&#238;t, quasiment instantan&#233;ment, juste a cot&#233; de la t&#234;te de la jeune femme. Elle a a peine le temps de se retourner, qu&#39;elle sent un membre &#233;norme s&#39;abattre droit sur sa t&#234;te...*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:26 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle sursaute et n&#39;a pas le temps d&#39;esquiver*
+- Oh merde...</div></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">27-Jan-19 08:15 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* Elle sent l&#39;appendice la frapper violement &#224; la t&#234;te. Elle tombe au sol, sa vision se brouille. Elle entend un gr&#233;sillement dans l&#39;&#233;couteur*
+- Et merde.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:25 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">elle gemit
+- J&#39;arrive pas &#224; activer mes pouvoirs... C&#39;est comme... S&#39;il les d&#233;sactivait...
+Elle semble avoir du mal &#224; respirer</div></span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* Alors qu&#39;il allait la frapper, il se rel&#232;ve, regardant autour de lui d&#39;une mani&#232;re pr&#233;occup&#233;e. Et dans un &#233;clat sombre, encore, il dispara&#238;t. Elle entend dans l&#39;oreillette le bruit qu&#39;il a fait en apparaissant, un grognement et un craquement sinistre. Des cris*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="27-Jan-19 08:24 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">28-Jan-19 09:50 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">*Elle gemit*
+- Qu&#39;est ce qui se passe....?</div>`</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">Dans l&#39;oreillette, un autre hurlement, cette fois, compl&#232;tement inhumain. Celui du d&#233;mon, s&#251;rement. Lorsqu&#39;elle r&#233;ussit &#224; se relever, et que sa vision revient, elle voit des &#233;clats similaires &#224; ceux de tout &#224; l&#39;heure d&#233;chir&#233; le ciel, &#224; toute vitesse. Un de ceux-l&#224; appara&#238;t pr&#232;s d&#39;elle. C&#39;est le policier, qui lui tend la main.
+
+- MAINTENANT !</div>`</span>
+
+                                <span class="chatlog__edited-timestamp" title="28-Jan-19 09:52 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">29-Jan-19 08:43 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Sans comprendre r&#233;ellement ce qu&#39;il se passe, la vue flou et les oreilles ayant des acouph&#232;ne, elle prend la main qu&#39;on lui tend sans vraiment se faire prier</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:36 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><span class="mention" title="MDK#5587">@MDK</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Feb-19 09:36 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:36 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(hmpf, ok)</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il la tire vers elle, la maintenant fortement contre son torse. Elle est alors prise d&#39;une sorte de vertige bizarre, il para&#238;t faire un pas, pendant que sa vision se tord d&#39;une mani&#232;re incompr&#233;hensible. Et en un instant, ils sont ailleurs. Hors du b&#226;timent, &#224; une centaine de m&#232;tres de l&#224;.</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:45 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle tousse et se d&#233;gage. Elle s&#39;&#233;croule au sol</em>
+- Qu&#39;est ce que c&#39;&#233;tait !?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:53 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il reprend son souffle, et verifie la pr&#233;sence de son arme de poing dans son logement. On n&#39;entend plus le grondement du d&#233;mon.</em>
+- J&#39;ai pli&#233; l&#39;espace. J&#39;ai d&#39;abord mis tr&#232;s loin d&#39;ici le d&#233;mon, et je nous ai sortis...
+<em>Le b&#226;timent s&#39;effondre, au loin.</em>
+- Pour &#233;viter &#231;a. Mais il peut revenir, on doit &#234;tre vigilants.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:55 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- C&#39;est Daemon, d&#39;abord. Ensuite, la question &#233;tait : Qu&#39;est ce que c&#39;&#233;tait que ce truc. Pas ton pouvoir.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:56 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Ah, &#231;a. J&#39;en sais rien. J&#39;ai l&#39;air d&#39;&#234;tre un chasseur ?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:57 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle soupire</em>
+- Laisse tomber. Je savais bien que tu saurais rien. Merci de m&#39;avoir sauv&#233;, en tout cas.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">18-Feb-19 09:58 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Je suppose que tu me le revaudra un jour. 
+<em>Il lui tend la main</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">18-Feb-19 10:06 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle prend sa main et se rel&#232;ve. Elle est assez proche de lui, il peut sentir son odeur, une sorte de m&#233;lange de rose et de lavande</em></span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Merci... Vraiment... <em>Et elle perd connaissance</em>
+
+<div class="pre pre--multiline language-yaml">* le policier est surpris un instant par la r&#233;action de la jeune femme, mais se reprend rapidement. Il soupire, et la prend dans ses bras, la soulevant sans grande peine. Il plie a nouveau l&#39;espace, et ils sont ailleurs. Chez lui, probablement. Et aussi plus tard. Lorsqu&#39;elle reprend connaissance, elle est seule, dans un lit confortable, au milieu d&#39;une pi&#232;ce meubl&#233;e de bois, dans un style assez moderne et sobre.*</div>
+
+<div class="pre pre--multiline ">* Elle se rel&#232;ve l&#233;g&#232;rement et fait craquer son dos*
+- ARGH mon cr&#226;ne...</div>
+
+<div class="pre pre--multiline language-yaml">* il n&#39;y a personne d&#39;autre dans la maison. &#192; part des plantes. Elle voit la cuisine au bout d&#39;un couloir, l&#39;appartement ne doit pas &#234;tre tr&#232;s grand.*</div>
+
+<div class="pre pre--multiline ">*Elle se tourne vers les plantes*
+- J&#39;me demande d&#39;o&#249; elle vienne... 
+*Elle se dirige vers la salle de bain, pour &#233;ventuellement trouver un anti migraineux*</div>
+
+<div class="pre pre--multiline language-yaml">* la salle de bain est, elle aussi, spartiate. Rien d&#39;autre qu&#39;une cabine de douche, une serviette, et un lavabo. Pas de pharmacie en vue.*</div>
+
+<div class="pre pre--multiline ">- Tsss.... Cela dit si moi aussi j&#39;avais le pouvoir de plier l&#39;espace je passerais mon temps &#224; ranger des trucs dans une autre dimension.
+
+*Elle se lave la figure &#224; l&#39;eau froide et explore l&#39;appart. Elle cherche notamment des photos ou des trucs du genre pour l&#39;aider &#224; mieux conna&#238;tre le policier*</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Feb-19 03:41 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">23-Feb-19 06:02 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(zoom)</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Feb-19 03:41 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* dans l&#39;ensemble, l&#39;appartement est a l&#39;image de ce qu&#39;elle a vu. Sobre. Spartiate. Bien rang&#233;, mais en m&#234;me temps, quand il n&#39;y a pas grand chose, c&#39;est difficile de faire d&#233;sordre. Le frigo est rempli de nourriture globalement v&#233;g&#233;tarienne, et il y a pas mal de plantes. Seule exception &#224; l&#39;aust&#233;rit&#233; de l&#39;appartement, un mur de la chambre est peint de motifs &#233;tranges, apparemment abstraits, et une baie vitr&#233;e donne sur la ville, elle est clairement a un &#233;tage &#233;lev&#233; d&#39;un haut b&#226;timent. Une biblioth&#232;que est remplie de livres divers, allant de romans &#224; de la litt&#233;rature &#233;sot&#233;rique, en passant par quelque bandes dessin&#233;es. Pas de t&#233;l&#233; ni d&#39;ordinateur. Et toujours pas de trace du policier.*</div>
+
+<div class="pre pre--multiline ">- Et moi qui ait plus de batterie. Bon ben, autant s&#39;entra&#238;ner.
+
+*Elle retir&#233; son haut et se met en brassi&#232;re. Elle raccourci son pantalon en faisant des ourlets, puis elle fait appara&#238;tre un sabre en bois et commence &#224; s&#39;entra&#238;ner en silence*</div> 
+
+<div class="pre pre--multiline language-yaml">* une fois encore, elle entend le bruit &#233;trange de l&#39;apparition du policier. Dans la pi&#232;ce o&#249; elle est. Il a un sac en carton a la main.*
+- oh. R&#233;veill&#233;e. J&#39;ai ramen&#233; du chinois.</div>
+
+<div class="pre pre--multiline ">*Elle s&#39;arr&#234;te en plein mouvement*
+- P&#39;tain tu m&#39;as fait peur. Mais merci.</div></span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Feb-19 03:43 PM">(edited)</span>
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline language-yaml">* il hausse les &#233;paules et pose le sac sur la table, en sortant un rouleau de printemps.*
+- sers toi. Tu te sens mieux ? Tu as pass&#233; la nuit a d&#233;lirer.</div>
+
+<div class="pre pre--multiline ">- Attends quoi ? S&#233;rieux ? Fuck. Je disais quoi ? 
+
+*Elle prend le sac et observe ce qu&#39;il y a &#224; l&#39;int&#233;rieur*</div>
+
+<div class="pre pre--multiline language-yaml">*un bobun, des nouilles, une petite bo&#238;te de vapeurs. Assez classique. Il sourit en prenant une bouch&#233;e. *
+- ce serait trop facile si je te le disais. Je pr&#233;f&#232;re garder un moyen de pression.</div></span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><div class="pre pre--multiline ">- Mon dieu je dois avoir dit des trucs sacr&#233;ment sale si c&#39;est pour que tu r&#233;agisse comme &#231;a. *Elle prend des nouilles et commence &#224; manger*</div>
+
+<div class="pre pre--multiline language-yaml">- on va dire que je m&#39;y attendais pas. 
+*Il se frotte le visage.*
+- mais j&#39;ai une mauvaise nouvelle. Notre copain d&#39;hier est toujours dehors, et il va falloir s&#39;en occuper.</div>
+
+<div class="pre pre--multiline ">- Super. Ce truc d&#233;sactive mes pouvoirs, t&#39;es au courant ?</div>
+
+<div class="pre pre--multiline language-yaml">- je sais. Il affecte les miens, aussi, quand je suis physiquement proche de lui.</div>
+
+<div class="pre pre--multiline ">- chier. Je connais qu&#39;une seule personne capable de cr&#233;er ce genre d&#39;horreur.</div>
+
+<div class="pre pre--multiline language-yaml">- je suis toute ou&#239;e.</div>
+
+<div class="pre pre--multiline ">- Mon p&#232;re.</div>
+
+<div class="pre pre--multiline language-yaml">- ah. Sympa.</div>
+
+<div class="pre pre--multiline ">- Ouais. T&#39;es n&#233; comment toi ?</div>
+
+<div class="pre pre--multiline language-yaml">Le flic hausse les &#233;paules d&#39;un air incertain
+- Comme tout le monde, j&#39;imagine. C&#39;est une vraie question ?</div>
+
+<div class="pre pre--multiline ">- Oui &#233;videmment, idiot.</div>
+
+<div class="pre pre--multiline language-yaml">- H&#233;, j&#39;en sais rien.</div>
+<div class="pre pre--multiline ">Elle soupire et continue de piquer de la bouffe dans le sac
+- En fait, mon p&#232;re est une sorte d&#39;&#233;gomaniaque dangereux qui pensent que ses enfants vont le rejoindre pour gouverner le monde. Je compte le tuer un jour, mais il est difficile &#224; trouver. En attendant, j&#39;essaie d&#39;&#233;viter qu&#39;il fasse trop de catastrophe. En fait, nous, les Cr&#233;ateurs, quand on est gamin, nos peurs et tout, prennent vie. Souvent on se retrouve &#224; mourir comme des idiots ou &#224; tuer notre famille. Voire les deux. J&#39;ai eu de la chance que ma m&#232;re soit pas trop idiote et sache m&#39;&#233;lever correctement. Elle &#233;tait m&#233;tahumaine aussi, et &#231;a, mon p&#232;re le savait pas. En fait, la plupart des daemon sont des cr&#233;ations d&#39;enfants. On vit pas assez longtemps pour ne plus en cr&#233;er apr&#232;s.
+
+Elle fait une petite pause
+
+- Par contre, j&#39;&#233;tais jamais tomb&#233;e sur un Daemon qui d&#233;sactive mes dons. Ca risque d&#39;&#234;tre coton. J&#39;ai pris tellement l&#39;habitude de me battre avec mes invocations....
+
+Nouveau soupire
+
+- J&#39;vais devoir utiliser mes armes.</div></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">27-Feb-19 09:39 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><span class="mention" title="MDK#5587">@MDK</span></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">27-Feb-19 09:40 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(mH)</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:34 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle soupire de nouveau et se tourne vers lui. Ses yeux changent de couleur</em>
+
+- Au fait, c&#39;est quoi toutes ses plantes ? Tu vis en symbioses avec, c&#39;est li&#233; &#224; ta race ou... Autre chose ? J&#39;ai vu que tu &#233;tais v&#233;gan aussi. Ca m&#39;intrigue. Puis j&#39;aimerais faire la d&#233;monstration de quelque chose, alors si &#231;a te blesse indirectement, &#231;a serait un peu con;</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:37 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- ... <em>Il avale sa bouch&#233;e, et a un sourire amus&#233;. Il pose son assiette en carton, et s&#39;essuie la bouche.</em> Non, pas particuli&#232;rement. C&#39;est des aromatiques, je m&#39;en sers pour cuisiner. Je ne mange pas de viande, dans la mesure o&#249; tout ce que je consomme d&#39;animal reprend vie &#224; l&#39;int&#233;rieur de moi quand je plie l&#39;espace. C&#39;est pas super agr&#233;able. 
+<em>Il ouvre une canette de jus et en boit une gorg&#233;e.</em>
+- Je t&#39;en prie, fais ce que tu veux.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:38 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle ouvre la bouche puis la referme</em>
+- Reprend vie &#224; l&#39;int&#233;rieur de toi ? Mais c&#39;est d&#233;gueulasse ??? Et comment c&#39;est possible m&#234;me ?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:42 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il hausse les &#233;paules</em>
+- C&#39;est plus une question m&#233;taphysique qu&#39;autre chose, le pourquoi est plut&#244;t long &#224; expliquer et pas tr&#232;s int&#233;ressant. Mais c&#39;est assez d&#233;geulasse, oui, j&#39;ai d&#251; m&#39;op&#233;rer moi-m&#234;me assez de fois en ayant mal calcul&#233; ma digestion pour d&#233;cider d&#39;arr&#234;ter de manger de la viande. Pas que ce soit meilleur pour la plan&#232;te, si tu veux mon avis.
+<em>Il soupire</em> 
+- Ni pour mon budget...</span>
+
+                                <span class="chatlog__edited-timestamp" title="05-Mar-19 03:42 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:43 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle se gratte les cheveux, puis hausse les &#233;paules</em>
+- Vu que les daemon mangent habituellement des humains, je vois pas trop ce que je peux te r&#233;pondre</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:44 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Ouais. Bref. Tu voulais me montrer quelque chose ?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">05-Mar-19 03:55 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle prend une plante et semble suivre des lignes de la fleur avec ses mains. La plante se fl&#233;trit tout de suite apr&#232;s</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:20 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- ... <em>Il grimace</em> Ouais. Bof. Je suis pas super fan, j&#39;aime bien mettre du basilic dans mes plats.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:25 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- C&#39;est pratique, sur les monstres. D&#233;sol&#233;e. 
+<em>Elle sourit penaudement</em>
+- J&#39;avais eu une copine qui &#233;tait &#224; moiti&#233; plante, elle aimait pas que j&#39;y touche.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:27 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il sourit, et finit son plat, avant de reposer la bo&#238;te vide dans le sac.</em>
+- J&#39;imagine bien. Et pourquoi est ce que tu es comme &#231;a ?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:27 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- M&#233;tisse. Ca vient de ma m&#232;re.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:27 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Ah. Elle &#233;tait... ?</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Tu as d&#251; avoir une enfance int&#233;ressante, en tous cas.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:30 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle passe sa main dans ses cheveux pensive. Elle lui sourit</em>
+- Bah elle a r&#233;ussi &#224; &#233;viter de nous faire tuer quand je cr&#233;ais des cr&#233;ature de mes cauchemars. Sinon, je ne sais pas trop ce qu&#39;elle &#233;tait. Mais je m&#39;y connais pas vraiment, et elle m&#39;a jamais parl&#233; de sa nature.</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(L&#224; pour le coup j&#39;ai aucune id&#233;e de race xD)</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:33 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">( <img class="emoji " alt="🤷" title="🤷" src="https://twemoji.maxcdn.com/2/72x72/1f937.png" /> c&#39;est pas mon univers)</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Hm. Ca pourrait expliquer certaines choses. 
+<em>Il se frotte les mains et s&#39;&#233;tire</em>
+- Enfin. Tu te sens mieux, dans tous les cas ?</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:35 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Mouais. 
+<em>Elle lui sourit</em>
+- Et toi, tu viens d&#39;o&#249; ? Je parle beaucoup de moi...</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(tu as des id&#233;es !)</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Mar-19 10:35 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:36 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(certes)</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:37 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">(h&#233;h&#233;)</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:37 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Pas vraiment d&#39;ici. Enfin, mes parents &#233;taient d&#39;ici. J&#39;ai grandi ailleurs, rejoint la police vers mes 20 ans. 
+<em>Il retire sa veste, tout en parlant, la rangeant soigneusement.</em>
+- J&#39;ai jamais vraiment connu mes parents, en fait. Je suppose que ma m&#232;re est toujours vivante, quelle part. Mais elle est compl&#232;tement humaine.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:40 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Ah t&#39;es un m&#233;tisse aussi du coup. 
+<em>Elle lui sourit</em>
+- Du coup tu as des id&#233;es, pour la suite ? Il faudrait que je passe chez moi r&#233;cup&#233;rer mes armes, mais... Si c&#39;est mon p&#232;re qui cr&#233;e ses trucs il peut s&#39;en faire une arm&#233;e sans sourciller.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:43 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Pour la suite ? Pas vraiment. Je comptais prendre une douche, l&#224;. J&#39;ai transmis un rapport &#224; mes sup&#233;rieurs, j&#39;attends de leurs nouvelles. 
+<em>Il d&#233;boutonne sa chemise distraitement.</em>
+- Ah, et si tu as besoin de quoi que ce soit, &#233;videmment, h&#233;site pas &#224; me demander. Je crois que tu as remarqu&#233; qu&#39;il n&#39;y a pas de portes ici.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:44 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Pourquoi, d&#39;ailleurs ? 
+<em>Elle l&#39;observe en coin, avec un petit sourire</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:47 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Sans grande surprise, il est bien b&#226;ti. Peu corpulent, mais sans une once de graisse, avec un torse bien dessin&#233;. Il plie sa chemise et d&#233;boutonne son pantalon, et a un sourire amus&#233; en lui r&#233;pondant.</em>
+- Eh bien, c&#39;est une bonne mesure de s&#233;curit&#233;, et je pense que tu peux comprendre pourquoi je n&#39;en ai pas vraiment besoin.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:52 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Une mesure de s&#233;curit&#233; genre pour &#233;viter de finir fusionner avec des portes ?
+<em>Elle s&#39;assoit sur le canap&#233;. Elle est pas mal bien faite aussi. Des jolies formes, des muscles. Un bon brin de femme, en somme. 
+Elle d&#233;tache ses tresse, elle a des cheveux fris&#233;, &#231;a lui donne une bouille tendre de jeune fille</em>
+- Huh tu aurais une brosse ?</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Mar-19 10:52 PM">(edited)</span>
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:55 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Ouais. Et aussi parcequ&#39;on crochette difficilement une porte qui n&#39;existe pas.
+<em>Il sourit et retire, plie et range son pantalon. Il porte un cale&#231;on qui, surprennement, n&#39;a absolument rien d&#39;anormal.</em>
+- Je dois pouvoir te trouver &#231;a.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:55 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Mais.... Pourquoi supprimer des portes si c&#39;est pour &#233;viter de les crocheter ?
+Et merci. Sinon.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:57 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il ouvre sa main, et un claquement sec retentit, avant qu&#39;une brosse apparaisse entre ses doigts. Il la lui tend, dessus, il y a des cheveux longs, d&#39;une couleur diff&#233;rente aux siens.</em>
+- On n&#39;est pas exactement dans un quartier tr&#232;s s&#251;r. On sait jamais si quelqu&#39;un va essayer de cambrioler ou n&#39;importe quoi...</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 10:59 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown">- Mais pourquoi faire dispara&#238;tre des portes dans ce cas ?
+<em>Elle prend d&#233;licatement la brosse. Il ressent une sorte de decharge &#233;lectrique dans ses doigts. Elle commence &#224; se brosser vigoureusement ses cheveux</em></span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/494968766770446362/e9b2d639833c7bdb80eb7c54124b7b0b.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="MDK#5587">MDK</span>
+                <span class="chatlog__timestamp">24-Mar-19 11:00 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il hausse les &#233;paules.</em>
+- On est chez moi. La plupart des intrus ne peuvent pas se t&#233;l&#233;porter. Je peux, et je n&#39;aime pas les intrus...</span>
+
+                        </div>
+
+
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Il s&#39;appuie sur le mur derri&#232;re lui. Toujours en cale&#231;on.</em>
+- Ah, et j&#39;aurai besoin de la brosse. Elle est &#224; la voisine.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="chatlog__message-group">
+            <div class="chatlog__author-avatar-container">
+                <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/4a7d574d92a98fdc1e2cea9c2769dda1.png" />
+            </div>            
+            <div class="chatlog__messages">
+                <span class="chatlog__author-name" title="Mara#3000">Mara</span>
+                <span class="chatlog__timestamp">24-Mar-19 11:03 PM</span>
+
+                        <div class="chatlog__content">
+                            <span class="markdown"><em>Elle ouvre la bouche et rigole l&#233;g&#232;rement avant de lui rendre la brosse</em>
+- Logique. Ah j&#39;aimerais bien savoir me teleporter. Y&#39;a des locker partout dans mon appartement. Une vraie pla&#238;t.</span>
+
+                        </div>
+
+
+
+            </div>
+        </div>
+</div>
+
+</body>
+</html>
