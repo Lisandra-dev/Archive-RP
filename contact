@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : TailPiece
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20130902
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header" class="container">
+	<div id="logo">
+		<h1><a href="#">Les chroniques de l'Impérium</a></h1>
+	</div>
+	<div id="menu">
+		<ul>
+			<li class="active"><a href="https://mara-li.github.io/Archive-RP/CDI/index.html" accesskey="1" title="">Homepe</a></li>
+			<li><a href="#" accesskey="2" title="">About</a></li>
+			<li><a href="#" accesskey="3" title="">Contact</a></li>
+		</ul>
+	</div>
+</div>
+<div id="page">
+	<div class="container">
+		<div class="title">
+			<h2>Les chroniques de l'Impérium</h2>
+			<p>1950. L'Empire du Japon a pris le nom d’Imperium et envahi l'intégralité de la planète à l'aide de son armée "d'actifs" - des humains dotés de pouvoirs - de méchas d'assauts et d'airships. Le monde est unifié sous un même drapeau au prix de millions de morts. Dans ce contexte vous êtes un soldat, originaire du Japon ou d'une zone conquise. Votre mission est de combattre les groupes de résistants ou, peut-être plus important encore : de traquer les "contractants", actifs ayant passés un pacte avec une mystérieuse créature, le Dévoreur, cherchant détruire la source de la magie, puis le monde.</p>
+		</div>
+		<h3> Type de RP : </h3> <p><code> [Textuel] [Diesel Punk] [Uchronie]</code></p>
+		<h3> Détails importants : </h3>
+		<p> Le RP est adapté du Roman "Les chroniques du Grimnoir" mais largement modifié : il n'y a donc pas les personnages de la trilogie, ni la même histoire. Je suis une MJ encore débutante donc il peut y avoir encore quelque petits soucis. Il y a un système de dés et de caractéristiques, et les joueurs sont invités à créer leur propre trame en étant leur propre MJ, sans avoir besoin de passer par moi : les joueurs sont indépendants, et l'histoire du scénario principale avancera par eux. Enfin, veuillez noter qu'il y a beaucoup à lire et cela peut donc rebuter les joueurs "débutants".
+		</div>
