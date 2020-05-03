@@ -1,0 +1,225 @@
+==============================================================
+Guild: [OUVERT] Les Chroniques de L'impérium
+Channel: 🆘 Aide / foire-aux-questions
+Topic: Ce channel centralise les questions & les réponses qui ont été faites dans le channel #questions
+==============================================================
+
+[13-Dec-19 01:26 PM] Mara#3000
+> A quoi servent les channels "Villes" ?
+Cela permet de faire des RP dans n'importe quelle ville de la section concernée, il suffit juste de le préciser au début de votre RP. Merci d'éviter de faire des RP dans le même channels mais avec une ville différente. Au besoin, il suffit de me ping pour que je crée un nouveau channel.
+
+[13-Dec-19 01:28 PM] Mara#3000
+> Les limites du cheval pâle
+La puissance permet de choisir le nombre de victime à infecter en un coup et si elle est assez élevé il est possible de soigner un petit peu, suffisamment pour passer pour un Guérisseur de faible niveau.
+
+[13-Dec-19 03:30 PM] Mara#3000
+> Est-il obligatoire de lancer un dé à chaque fois que je veux utiliser mon pouvoir ?
+Non. Seul certains cas requiert l'utilisation d'un dé. Par exemple  : 
+- Combat entre joueur (bien que vous pouvez y aller au fair-play)
+- Action difficile (attaque d'un PNJ de haut niveau, monstre...)
+- Contrôle mental de personnage de haut niveau 
+- Pouvoir chanceux, de manière évidente.
+- Utilisation de vos compétences.
+
+[14-Dec-19 01:13 PM] Mara#3000
+> Quels sont les équivalents de la puissance par rapport à la populace du monde ?
+▫️ Avec un score de 50, on est déjà beaucoup plus puissant que la population moyenne, c'est disons le niveau moyen de la majorité des soldats de l'Imperium, si on exclu les premiers.
+▫️ À 70, on est considéré comme plus puissant que la moyenne, c'est le niveau moyen d'un second.
+▫️ 80 est le niveau moyen d'un Premier.
+▫️ À 90, on est considéré comme quasiment le maître de son pouvoir
+
+[14-Dec-19 03:27 PM] Mara#3000
+> En RP est-il possible d'avoir plus de deux capacités ?
+Non.
+
+[17-Dec-19 02:05 PM] Mara#3000
+> Faut-il lancer des dés pour les stats ? :sadcat2: 
+Pour la millième fois : NON. Le dé ne determine que la puissance. A aucun moment je parle de tirer des dés pour les stats, sinon j'aurais pas parlé de point à repartir.
+
+Je suis taquine mais pas méchante !
+
+[30-Dec-19 07:31 PM] Mara#3000
+> Ouin ouin les fiches sont publiques ouin ouin.
+Si pour une raison complètement stupide (vous êtes dans le même camps, les gars...) vous voulez que votre fiche soit privé (???), la seule solution est : de faire une double fiche, l'une privé (que vous me donnerez) & l'une publique qui sera sur le server. Mais qu'on soit bien clair, j'veux une très bonne raison à ça, parce que **vous êtes dans le même camps, vous êtes des humains, y'a pas de plot twist à faire**.
+
+[02-Jan-20 11:08 PM] Mara#3000
+> Que ce passe-t-il pour les pouvoirs des membres d'une même famille ?
+En majorité, les membres d'une même famille vont avoir le même pouvoir, ou un pouvoir dans le même spectre (par exemple, massif - lourd, artiste - arcaniste...). A l'heure actuel, les scientifiques de l'unité 731 ne pensent pas que le pouvoir soit héréditaires, mais se demandent tout de même pouvoir les même descendants ont le même pouvoir à des puissances similaires.
+
+[08-Jan-20 12:40 AM] Mara#3000
+> Grade :
+Les grades ne sont pas fixes. En fonction de l'action de vos personnages, vous pouvez être rétrograder ou monter en grade. Tout cela se fait en fait évidemment en rp. Dans le cas d'une rétrogradation, il y aura, avant, un conseil de discipline. Les montés en grades se feront de manière plus libres.
+
+{Reactions}
+02reee
+
+[08-Jan-20 12:44 AM] Mara#3000
+> Rapport de mission
+A la fin de chaque évents, les personnages doivent écrire un rapport **RP**, relevant les personnages, les actions, etc. Un rapport quoi.
+
+[08-Jan-20 06:52 PM] Mara#3000
+> Mais les dés alors ?
+- Lancer un dé :`!1d10`
+- Avoir la puissance de votre personnage : `!puissance`
+- Lancer un dé et appliquer le kanji : `!1d10-<nombre de kanji de la statistique du dé>` (par exemple : `1d10-1`)
+- Commenter son lancé : `!<dé> #commentaire`
+
+Les dés de combat se lance directement dans le channel où se déroule le combat. **N'oubliez pas de commenter votre dé**
+_ _
+
+[08-Jan-20 06:53 PM] Mara#3000
+> Je sais pas quelle mise en forme mettre pour mon rp snif :cryingcatto: 
+
+Vous êtes libres de RP de la façon dont vous voulez, mais si vous n'avez pas d'idée de mise en forme, en voici une :
+
+▫️  Les actions se font entre étoiles :  
+          *Elle mange une pomme* :  `*elle mange une pomme*`
+
+▫️ Les paroles commence par un tiret : 
+          - J'ai mangé une pomme hier ! : `- J'ai mangé une pomme hier !`
+
+▫️  Les pensées se font entre accolade et étoiles :
+          *{Ouah, cette pomme était super bonne !}*: `*{Ouah, cette pomme était super bonne !}*`
+
+[08-Jan-20 06:54 PM] Mara#3000
+_  _
+> Comment tu fais une ligne sauté pour deux postes à la suite? :smugcatto: 
+Comme ça mon enfant : `_ _`
+
+[10-Jan-20 05:25 PM] Mara#3000
+> Quelles sont le rythme des trames ?
+*Ce poste sera mis à jour au fur et à mesure que des personnes veulent devenir MJ et animés des trames*
+▫️ **MARA** : Un poste "MJ" tous les soirs entre 21h et 22h.
+
+[11-Jan-20 02:02 AM] Mara#3000
+> Comment fait-on pour les langues sur l'Arcadia ?
+Il y a plusieurs Kanji de babel un peu partout sur l'île, donc les langues sont automatiquement traduites. 
+
+Cependant certains termes ne le sont pas, notamment les injures. Il est possible aussi qu'en se concentrant, on peut outrepasser la traduction.
+
+De plus, on entend les accents des personnes malgré la traduction.
+
+[14-Jan-20 02:09 PM] Mara#3000
+> Quand on fait de la magie, ça fait un effet spécial sur nous, sur notre main ou un truc du genre ou pas?
+Non, on ne peut pas voir la "magie", cependant, les Arcanistes peuvent "voir" l'être de magie autour de nous, ainsi que les runes. Le commun des mortels ne voient rien.
+_ _
+
+[14-Jan-20 02:13 PM] Mara#3000
+> Un guérisseur peut-il soigner un cancer?
+Ca dépend du cancer et de la puissance du guérisseur. Une tumeur bénigne ne demande pas beaucoup d'énergie et se soigne facilement. Une maligne par contre, demande une grande puissance et beaucoup de soin sur le long terme, et encore plus pour un cancer généralisé, qui peut être quasiment impossible à soigner. Tout au plus, on peut ralentir le processus, mais la personne est condamnée dans 90% des cas. 
+
+> Un guérisseur peut-il faire repousser des membres ?
+Non, il peut juste les recoudre. Un membre détruit le reste "à vie" (*ex: oeil crevé*)
+
+> Un guérisseur peut-il se soigner lui-même ?
+Oui, comme il le ferait avec une autre personnes, cependant, il faut y arriver, surtout dans le cas d'une blessure extrêmement grave.
+
+> Et les blessures anciennes ?
+Il est impossible pour un guérisseur de réparer des anciennes blessures. Une blessure peut être soigner dans un intervalle de 24h maximum, sinon, c'est trop tard.
+
+[21-Jan-20 12:51 PM] Mara#3000
+> Du coup, tout ce qui est soin/bouclier/altération de l'environnement,.. Tout ce qui n'est pas offensif en somme, on fait comment ? :Couverture:
+`@Choupa`
+Ce sont des actions qui ne sont pas considéré comme attaquante ou défensive, donc il n'y a pas d'échange de rôle. Elles sont évidemment toujours liés à vos scores de dés, mais vous ne pouvez pas faire votre action "non offensive" puis enchainer sur une action offensive.
+
+[21-Jan-20 12:56 PM] Mara#3000
+> Doit-on lancer un dé pour ses action non offensive ? :Couverture: 
+`@Choupa`
+Si c'est une action basique de votre pouvoir : non. Par contre, en fonction de ce que c'est, c'est à dire si vous balancez un malus à votre adversaire, c'est considéré comme une action offensive. Si c'est une action bénéfique sur vos alliés ou une altération de votre environnement (genre, une tornade) votre adversaire ne peut pas se défense (logique). 
+Par contre, comme déjà dit dans une autre question, vous devez obligatoirement lancer un dé pour l'utilisation de vos capacités.
+
+Chaque pouvoir étant différent, il n'y a pas de règle dans le marbre pour chaque et donc, tout se fera au cas par cas dans toutes les situations.
+
+[22-Jan-20 11:00 PM] Mara#3000
+> Afin de permettre à tous de créer des monstres pour les évents futurs, voici les rangs et les stats pour les monstres :
+*A savoir, la statistique de Karma n'existe pas chez les ennemis*
+
+*Rang B*
+▫️ Point total : 15
+▫️ Stats max : 5
+
+*Rang A*
+▫️ Point total : 25
+▫️ Stats max : 7
+
+*Rang S*
+▫️ Point total : 40
+▫️ Stats max : 9
+
+[24-Jan-20 08:15 PM] Mara#3000
+> Quels sont les armes de l'équipement de base ?
+En général, un katana / sabre, et une arme à feu type fusil semi-automatique.
+
+[31-Jan-20 04:49 PM] Mara#3000
+> Comment est l'homosexualité dans l'Impérium ?
+Administrativement parlant, l'Impérium ne condamne pas l'homosexualité. Il n'y a pas de mariage pour tous, évidemment, mais tant que ça reste dans la sphère du privée, il n'y a pas vraiment de soucis. Tant que soldat fait son job... Côté individuel, en revanche, c'est très disparate, surtout que l'Impérium ne condamne pas l'homophobie. Certains vont vouloir empêcher la promotion des homosexuels, d'autres vont les soutenir. Il n'y a pas de règle.
+
+> Et le racisme ?
+Alors, là c'est plus compliqué. Côté administratif de la section asiatique, ces derniers détestent tout particulièrement les étrangers, et encore plus les chinois et coréens. Il y aura donc très peu de ces derniers dans la section asiatiques, bien que le temps ait quelque peu changé les choses. Les métisses sont d'ailleurs acceptés au sein de la section.
+
+Côté occidental, administrativement, ils n'osent pas vraiment faire quoique ce soit, surtout que la section africaine existe et pourrait poser problème. Du coup, toutes les personnes d'origine afro sont souvent renvoyés vers cette section. Individuellement, par contre, la plupart des gens ne vont pas cacher le racisme, qui ne va pas être condamné. Si une personne en tabasse une autre pour acte de racisme, si c'est durant les heures de travail... Et bien, l'une des deux sera condamnés, et ça sera pas la victime de racisme.
+Sauf dans la section Africaine, évidemment.
+
+[01-Feb-20 12:52 AM] Mara#3000
+> **Code militaire** : https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000630665&categorieLien=id
+N'hésitez pas à lire ce document en cas de doute sur la hierarchie et le code militaire
+
+[03-Feb-20 03:38 PM] Mara#3000
+> 🤖 Quel est la commande pour accéder au shop et à notre argent ?
+- Shop : `!shop`
+- Notre argent : `!money`
+
+[06-Feb-20 01:05 PM] Mara#3000
+> Beh, des fois, y'a des soucis dans les langues & la typo, c'est normal ?
+Des fois, les Kanji de Babel ont des "bugs", avec autant de langue à gérer, qui ont parfois des mots qui n'existe pas, ou des expressions pas vraiment traduisible, il est possible que le Kanji de Babel ne retranscrive pas vraiment bien la personne. Ainsi, certains mots peuvent être changé, voir le sens perdu, mais c'est assez rare. C'est surtout sur les langues un peu perdue.
+
+(Oui c'est un peu TGCM pour mes fails, mais hé)
+
+[08-Feb-20 01:57 AM] Mara#3000
+> Que ce passe-t-il dans le cas d'un coup critique pour le guérisseur ?
+La personne soignée obtient un bonus assimilable à un Kanji temporaire. La capacité qui sera boosté sera la capacité lié à votre pouvoir. 
+
+De manière "RP" cela est explicable car votre corps est plus endurant / agile / intelligent (etc) à cause de votre pouvoir. Le pouvoir de guérisseur va donc se lié à ce que votre corps à de plus primaire : votre pouvoir.
+
+[20-Feb-20 10:54 PM] Mara#3000
+> Mais, c'est quoi un tour, en fait ?
+Un tour est un message d'un joueur - MJ. Il n'y a pas besoin que tous les joueurs aient postés pour que votre tour soit compté.  Ainsi, par exemple :
+> Joueur A : <Action>
+> Joueur B : <Action>
+> Mj : <Conséquence Joueur A> <Conséquence joueur B>
+> Tour pour Joueur A/B : 1
+> Joueur C : <action>
+> Mj : <Conséquence action Joueur C>
+> Tour pour A/B : 1
+> Tour pour C : 1
+
+[20-Feb-20 11:10 PM] Mara#3000
+> PV rendu par guérisseur (stat max=8)
+0 : UCC / Bonus + 20 pv
+1 : 16
+2 : 14
+3 : 12
+4 : 10
+5 : 8
+6 : 6
+7 : 4
+8 : 2
+
+[11-Mar-20 01:02 PM] Mara#3000
+> Quel est le nombre de balle par arme ?
+▫️ Arme de poing : 8 balles / chargeur 
+▫️ Fusil : 12 balles /chargeur
+▫️ Artillerie lourde : 20 balles/chargeur
+
+> Combien de chargeur avons-nous par mission ? 
+3 chargeurs de chaque par mission.
+
+[14-Mar-20 01:53 AM] Mara#3000
+> Y a t'il des PNJ aux places vacantes ?
+En l'absence de joueur pour les places disponibles, les fonctions de Premiers, Second, sont vacantes : il n'y a pas de PNJ à ses places. L'administration et les chefs des autres sections s'occupent des sections aux chefs vacants.
+
+==============================================================
+Exported 30 message(s)
+==============================================================
+
+

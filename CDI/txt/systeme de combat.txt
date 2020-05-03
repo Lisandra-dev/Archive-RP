@@ -1,0 +1,166 @@
+==============================================================
+Guild: [OUVERT] Les Chroniques de L'impérium
+Channel: 🧭Contexte / système-de-combat
+==============================================================
+
+[27-Jan-20 04:40 PM] Mara#3000
+:important:  *Les calculs sont automatisés !*
+
+Le système de combat du RP est très simple : il se déroule au tour par tour, avec un lancé de dé d'attaque et de défense. La réussite des actions est donc déterminé à la fois par votre score et la caractéristique liée mais aussi par le dé de défense de votre adversaire. 
+
+```ini
+[ DEFENSE ]
+```
+La caractéristique que vous lancez pour votre défense est soit un dé d'endurance ou d'agilité. 
+- L'endurance vous permet d'encaisser le coup, il recevra donc moins de dégâts.
+- L'agilité vous permet d'esquiver le coup (et donc de ne pas prendre de dégâts). De plus, pour réussir votre esquive, vous devez faire **moitié moins** que l'adversaire. Ainsi, s'il fait une attaque de 8, vous devez faire 4 ou moins. Certaines attaques deviennent donc impossible à esquiver à partir d'un certains scores (1 et 0).
+
+Il existe cependant des attaques qui ne rentrent dans cette catégorie : les altérations d'état.
+▫️ Les attaques mentales (parleur, liseur) : Elles nécessitent une défense avec un dé d'intelligence.
+▫️ Les attaques liés aux poisons et maladies (cheval pâle) : Elles nécessitent un dé de karma.
+
+Choisissez donc bien en fonction de vos caractéristiques !
+
+Vous devez OBLIGATOIREMENT lancer votre dé avant de déterminer votre action. Mais vous n'êtes pas obligé d'attendre le dé de défense de votre adversaire. Dans tous les cas, l'action finale avec les dégâts sera **après** le lancé des protagonistes de l'action. 
+
+Dans le cas où il y aurait un 1 VS plusieurs, la personne en sous nombre doit lancé un dé de défense pour chaque attaque reçu et peut attaquer un certain nombre de personne en fonction de son rang.
+
+[27-Jan-20 04:43 PM] Mara#3000
+_ _ 
+```ini
+[ DEGÂTS ]
+```
+Les dégâts sont déterminés en fonction de l'écart de dé entre l'attaquant et le défenseur dans le cas où le défenseur n'a pas réussi à esquiver l'attaque. Ainsi, plus la différence est haute, plus le défenseur perdra de pv. Il est à savoir que les **dégâts sont proportionnels à la vie du défenseur**
+> `Pour plus d'information sur les calculs de dégâts, je vous oriente vers le git contenant le programme`
+
+Dans le cas où le défenseur aurait encaissé le coup (dé d'endurance), il perd **moins de pv**. La valeur de sa caractéristique est une valeur **seuil**, et plus le dés sera bas mieux le défenseur encaissera. Un score de 0 étant un UCC, la personne encaissera **tous** les dégâts. 
+> `La valeur de la caractéristique détermine le montant maximum qu'il est possible d'encaisser`
+
+*Cas des duels amicaux*
+
+Lors d'un combat entre PJ "amicaux", vous ne perdez pas de pv et vous devez lancer un dé 10 pour déterminer celui qui a l'initiative. La personne avec le plus grand score commence.
+_ _
+
+[27-Jan-20 04:53 PM] Mara#3000
+```ini
+[RESISTANCES]
+```
+Les résistances sont des *cuirasses* qui protègent des dégâts. Dans les faits, cela fonctionne exactement comme un encaissement avec un dé d'endurance. Cependant, les résistances sont fixes et liés soit à votre équipement, soit au rang de votre adversaire. En général, il existe :
+▫️ Armure légère : Diminution de 10%
+▫️ Armure moyenne : Diminution de 25%
+▫️ Armure lourde : Diminution de 50%
+
+Si votre personnage fait un coup critique, ou si vous utilisez une capacité, la cuirasse est ignorée.
+
+⚠️  Il existe TROIS exceptions aux systèmes de dégâts :
+- Les ultraCC *d'attaque* : Lorsqu'un PJ a un score de dés égal à 0, il obtient automatiquement le bonus de 50% et outrepasse la défense par endurance de son adversaire. 
+- Les UltraCC *de défense*: Lorsqu'un combattant a un score de dés d'endurance égal à 0, il annule automatiquement l'attaque de son adversaire, quelque soit la valeur de son dé. 
+- Les CC d'attaque : Lorsqu'un combattant a un score de dés égal à 1, il annule la défense par endurance de son adversaire.
+
+A noté où dans le cas où les deux combattant font des UltraCC d'attaque et de défense (La probabilité est mince), c'est l'attaquant qui aura l'avantage.
+De plus, ces valeurs ne correspondent QUE pour les attaques normales. Les attaques par les capacités offensives ont des bonus différents rien que pour équilibré. Dans tous les cas, une capacité fera toujours plus de dégât qu'un UCC d'une capacité normale.
+
+[27-Jan-20 05:14 PM] Mara#3000
+```css
+[ARMES]
+```
+**ARME BLANCHE** : 
+▫️ Couteau  : *Agilité* - 5%
+▫️ Epée : *Force* - 10%
+▫️ Projectile : *Perception* - 5%
+▫️ Arme contondante : *Force* - 15% (limité à une fois tous les 3 tours)
+
+**ARME A FEU** : 
+▫️ Pistolet : *Perception* - 8% - 8 balles
+▫️ Fusil : *Perception* - 10% - 12 balles
+▫️ Artillerie lourde (perforant) :  *Force* - 15% (limité à une fois tous les 3 tours) - 20 balles_ _
+
+[27-Jan-20 05:14 PM] Mara#3000
+```css
+[POUVOIRS]
+```
+▫️ Adaptateur : *Force* - Dépend de l'arme utilisé
+▫️ Arcaniste : *Intelligence* - Variable (dépend de l'action)
+▫️ Artiste : *Intelligence* - Variable
+▫️ Babel : *Perception* - Aucun
+▫️ Bestial : *Perception* - Variable (Type d'arme)    
+▫️ Bougeur : *Force* - Dégât brute : +10%
+▫️ Boumeur : *Force* - Dégât brute : +10% 
+▫️ Brute : *Force* - Dégât brute : +10%
+▫️ Chanceux : *Karma* - Aucun 
+▫️ Cheval Pâle : *Perception* - Altération 
+▫️ Crépiteur : *Force* - Dégât brute : +10%             
+▫️ Eclipse : *Agilité* - *Garde de fer :* Dégât brute : +5% | *Garde Fantôme* : Bonus d'esquive : -2 aux dés d'agilité [En combat]
+▫️ Empathe : *Perception* - Altération 
+▫️ Engrenage : *Intelligence* - Aucun
+▫️ Estompeur : *Agilité* - Bonus d'esquive : -2 aux dés d'agilité [En combat]
+▫️ Evoqueur : *Perception* - Variable (Type d'arme)    
+▫️ Frigo : *Force* - Dégât brute : +10%
+▫️ Guérisseur : *Perception* - Aucun
+▫️ Hérisseur : *Force* - Dégât brute : +10%
+▫️ Illusionniste : *Intelligence* - Variable (type d'arme)
+▫️ Juge : *Perception* - Aucun
+▫️ Lampe : *Force* - Dégât brute : +10%
+▫️ Lazare : *Perception* - Variable (type d'arme)
+▫️ Liseur : *Perception* - Altération 
+▫️ Lourd : *Force* - Dégât brute : +10%
+▫️ Massif : *Force* - Dégât brute : +10%
+▫️ Météo : *Perception* - Altération 
+▫️ Parleur : *Perception* - Altération 
+▫️ Sosie : *Agilité* - Altération 
+▫️ Torche : *Force* - Dégât brute : +10%
+▫️ Trouveur : *Perception* - Aucun
+▫️ Voyageur : *Agilité* - Bonus d'esquive : -2 aux dés d'agilité [En combat]
+▫️ Voyant : *Perception* - Aucun
+
+[12-Mar-20 03:42 PM] Mara#3000
+［Ｄéｐｌａｃｅｍｅｎｔ　－　ＲＡＮＧ］
+
+Chaque combat se déroule avec 3 rangs de portés à partir du monstre. De fait, lorsque le monstre se déplace, tous les rangs se modifient par rapport à lui.
+
+- Rang 1 : Corps à corps 
+- Rang 2 : Semi-distance
+- Rang 3 : Distance
+
+Tous les joueurs peuvent se déplacer sur les cases comme ils veulent : ils peuvent donc remonter au premier rang en étant au dernier. Cependant, un joueur ne peut pas faire plusieurs déplacement par tour. 
+
+Les compétences et les pouvoirs ne prennent pas en compte la distance, contrairement aux armes. Ainsi :
+
+**ARME BLANCHE : **
+
+▫️ Couteau  : Rang 1
+▫️ Epée : Rang 1
+▫️ Projectile : Rang 1 à 2
+▫️ Arme contondante : Rang 1
+
+**ARME A FEU : **
+
+▫️ Pistolet : Rang 1 à 2 - Malus de +2 si utilisé sur le rang 3
+▫️ Fusil : Rang 2 à 3 - Malus de +1/ bonus de 5% si utilisé sur le rang 1
+▫️ Artillerie lourde : Rang 2 à 3 - Malus de +2 / Bonus de 10% si utilisé sur le rang 1
+
+[14-Mar-20 04:08 PM] Mara#3000
+```md
+# R E S U M E 
+```Ainsi, pour résumé les grandes lignes du système de combat : 
+- Lancé de dés d'attaque et de défense
+> L'endurance permet d'encaisser les dégâts. 
+> L'esquive permet de ne pas prendre de dégât. Elle est réussit si le dé est moitié moins du dé d'attaque de l'adversaire.
+
+- Dés de 10 lié à votre caractéristiques
+> Kanji : Valeur seuil = strictement inférieure à votre caractéristique (7 pour 8, 6 pour 7, etc).
+> Pas de kanji : Seuil = caractéristique
+
+- Meilleur jet : 0, pire jet : 10
+> Un 0 correspond à un "Ultra coup critique" et un 1 à un "coup critique". 
+
+- Quand vous utilisez votre capacité ou quand vous attaquez avec votre pouvoir, vous devez lancer le dé lié à votre pouvoir.
+- De même, si vous attaquez en utilisant une arme, vous devez lancé la caractéristique liée.
+> Pour plus d'information sur le détail des caractéristiques : https://discordapp.com/channels/652808298243817472/671378843629518878/671387449720569876
+> https://discordapp.com/channels/652808298243817472/671378843629518878/671387501101056017
+
+==============================================================
+Exported 7 message(s)
+==============================================================
+
+
