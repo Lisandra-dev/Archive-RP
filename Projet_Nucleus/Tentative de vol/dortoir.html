@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Projet Nucl&#233;us [RP | FR] - dortoir</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/701368588690522112/37cbdd379039f4272c2002e4b9f5648f.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Projet Nucl&#233;us [RP | FR]</div>
+        <div class="preamble__entry">&#128220; ▬ Ev&#232;nements ▬ &#128220; / dortoir</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+    <div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/729412527280357487/0a12d76f006677575facb92a7365d7be.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vaisseau Nucleus#0000" data-user-id="729412527280357487" >Vaisseau Nucleus</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="729412527376826460" id="message-729412527376826460">
+                <div class="chatlog__content">
+                    <div class="markdown">Le dortoir ne semble contenir personne.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422117975752860" id="message-729422117975752860">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether arrive dans le dortoir et observe autour d&#39;elle.</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422144877887519" id="message-729422144877887519">
+                <div class="chatlog__content">
+                    <div class="markdown"></div>
+                </div>
+
+
+            <div class="chatlog__embed">
+                <div class="chatlog__embed-color-pill" style="background-color: rgba(99,175,225,255)"></div>
+                <div class="chatlog__embed-content-container">
+                    <div class="chatlog__embed-content">
+                        <div class="chatlog__embed-text">
+
+
+                            <div class="chatlog__embed-description"><div class="markdown"><strong>Ether Larissa</strong>  ▬  Karma - Pi&#232;ge : <strong>Echec</strong> 
+<img class="emoji " alt="next" title="next" src="https://cdn.discordapp.com/emojis/723131844643651655.png">[<em>D&#233; : 8 (8)  | Implant : 0 | Seuil : 2</em> ]</div></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/729412527280357487/0a12d76f006677575facb92a7365d7be.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vaisseau Nucleus#0000" data-user-id="729412527280357487" >Vaisseau Nucleus</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422234870874142" id="message-729422234870874142">
+                <div class="chatlog__content">
+                    <div class="markdown">Une explosion se d&#233;clenche, et Ether tente d&#39;absorber les d&#233;g&#226;ts.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422266927939705" id="message-729422266927939705">
+                <div class="chatlog__content">
+                    <div class="markdown"></div>
+                </div>
+
+
+            <div class="chatlog__embed">
+                <div class="chatlog__embed-color-pill" style="background-color: rgba(99,175,225,255)"></div>
+                <div class="chatlog__embed-content-container">
+                    <div class="chatlog__embed-content">
+                        <div class="chatlog__embed-text">
+
+
+                            <div class="chatlog__embed-description"><div class="markdown"><strong>Ether Larissa</strong>  ▬  Ether - Endurance : <strong>Echec</strong> 
+<img class="emoji " alt="next" title="next" src="https://cdn.discordapp.com/emojis/723131844643651655.png">[<em>D&#233; : 6 (6)  | Implant : 0 | Seuil : 5</em> ]</div></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422300004352101" id="message-729422300004352101">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether finit dans le mur, &#224; cause du souffle de l&#39;explosion, mais la majorit&#233; des d&#233;g&#226;t sont absorb&#233;e par ses &#233;cailles.</em><span class="chatlog__edited-timestamp" title="05-Jul-20 09:45 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/729412527280357487/0a12d76f006677575facb92a7365d7be.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vaisseau Nucleus#0000" data-user-id="729412527280357487" >Vaisseau Nucleus</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 09:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="729422551104618608" id="message-729422551104618608">
+                <div class="chatlog__content">
+                    <div class="markdown">Ether perd 4 <img class="emoji " alt="pv" title="pv" src="https://cdn.discordapp.com/emojis/712052732873408703.png">.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="729423245484359700" id="message-729423245484359700">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Le capitaine arrive dans la pi&#232;ce juste apr&#232;s elle, fortement contrari&#233; mais toujours sur ses gardes. Il s&#39;adresse &#224; Ether sans s&#39;aventurer plus dans les dortoirs.</em>
+- Tout est ok, Larissa ?</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="729423683411771402" id="message-729423683411771402">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether a fait un creux dans un mur et se rel&#232;ve en grognant</em>
+- A ma place, vous serez mort...</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="729424296128020581" id="message-729424296128020581">
+                <div class="chatlog__content">
+                    <div class="markdown">- Je prends &#231;a pour un oui. Asseyez-vous pour r&#233;cup&#233;rer si besoin.
+<em>Il remet ensuite en place son chapeau, tout en gardant un œil soucieux sur Ether.</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="729424611485155378" id="message-729424611485155378">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether se met dans un coin pour se r&#233;g&#233;n&#233;rer.</em>
+- J&#39;esp&#232;re que c&#39;&#233;tait le seul pi&#232;ge.<span class="chatlog__edited-timestamp" title="05-Jul-20 09:53 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 09:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="729425962110025799" id="message-729425962110025799">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Hanc observe la pi&#232;ce en arrivant et examine la trace laiss&#233; l&#39;explosion.</em> &quot;Ils ont pas peur de trouer la coque...&quot;<span class="chatlog__edited-timestamp" title="05-Jul-20 09:58 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="729426881589280921" id="message-729426881589280921">
+                <div class="chatlog__content">
+                    <div class="markdown">- C&#39;est des petites explosions. Pas assez pour trouver un vaisseau. On en trouve r&#233;guli&#232;rement quand on monte sur un vaisseau ennemi.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="729427628477644853" id="message-729427628477644853">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;J&#39;aime pas les explosions.. Une seule qui est mal contr&#244;l&#233;e et c&#39;est tout le vaisseau qui explose..&quot;</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="729427955251544064" id="message-729427955251544064">
+                <div class="chatlog__content">
+                    <div class="markdown">- Alors bougeons-nous avant que tout parte en miette. Insitus, c&#39;est &#224; vous de jouer maintenant.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="729428313012961370" id="message-729428313012961370">
+                <div class="chatlog__content">
+                    <div class="markdown">- Je pense qu&#39;ils ont une tr&#232;s bonne artifici&#232;re.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="729428602843693226" id="message-729428602843693226">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Je vais faire de mon mieux capitaine!&quot; <em>Il pose sa main sur son torse avant de se concentrer &#224; nouveau, l&#39;Astropad &#233;met sa lumi&#232;re bleue qui enveloppe l&#233;g&#232;rement Hanc.</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-20 10:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="729428613946015837" id="message-729428613946015837">
+                <div class="chatlog__content">
+                    <div class="markdown"></div>
+                </div>
+
+
+            <div class="chatlog__embed">
+                <div class="chatlog__embed-color-pill" style="background-color: rgba(99,175,225,255)"></div>
+                <div class="chatlog__embed-content-container">
+                    <div class="chatlog__embed-content">
+                        <div class="chatlog__embed-text">
+
+
+                            <div class="chatlog__embed-description"><div class="markdown"><strong>Hanc Insitus</strong>  ▬  karma Visualisation de l&#39;armurerie... : <strong>R&#233;ussite</strong> 
+<img class="emoji " alt="next" title="next" src="https://cdn.discordapp.com/emojis/723131844643651655.png">[<em>D&#233; : 2 (3)  | Implant : 1 | Seuil : 4</em> ]</div></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="729428832423116862" id="message-729428832423116862">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>La lumi&#232;re passe au vert alors qu&#39;il sort son pad et le tend &#224; Morrison.</em> &quot;Voil&#224;, je vous laisse &#233;tudier la sc&#232;ne.&quot;</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="729429043702923266" id="message-729429043702923266">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Le capitaine se saisit de l&#39;astropad et &#233;tudie avec attention ce qu&#39;il voit</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="729431510402334830" id="message-729431510402334830">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ayagami entre &#224; son tour dans la pi&#232;ce avant de regarder autour de lui.</em>
+
+- Bon... C&#39;&#233;tait quoi cette explosion que j&#39;ai entendu plus t&#244;t ?</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="729431954528796721" id="message-729431954528796721">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether est pleine de suit, et il y a tour dans le mur derri&#232;re elle</em>
+- Moi et ma chance habituelle.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="729434778042105917" id="message-729434778042105917">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ayagami hausse les &#233;paules avant de la regarder de la t&#234;te aux pieds.</em>
+
+- Chance c&#39;est pas important, mais que tu sois en un seul morceau &#231;a par contre &#231;a l&#39;est... Tu auras le temps de te r&#233;g&#233;n&#233;rer avant que nous atteignons la prochaine salle ?</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 10:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="729436775042252810" id="message-729436775042252810">
+                <div class="chatlog__content">
+                    <div class="markdown">- Oui, c&#39;est bon.
+<em>Elle n&#39;a plus aucune blessure</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="729441791736283197" id="message-729441791736283197">
+                <div class="chatlog__content">
+                    <div class="markdown">- Parfait ! Et du coup... O&#249; en est la visualisation de la prochaine salle ?</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/280319856438542339/5476a40822cfdd101b23bac70832f0e1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="minewill441#0430" data-user-id="280319856438542339"  style="color: rgb(58, 135, 173)" >T&#233;o Kirk</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 11:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="729454858083762217" id="message-729454858083762217">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>T&#233;o arriva &#224; la suite et demanda si tout allait bien.</em>
+
+- H&#233;,  sa va tous le monde ? 
+
+<em>Depuis le hack de l&#39;androide T&#233;o &#224; plaire soucieux</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="729461636674617444" id="message-729461636674617444">
+                <div class="chatlog__content">
+                    <div class="markdown">- Armurerie. Vide encore. Trop vide.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="729461894712262678" id="message-729461894712262678">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;On peut se permettre d&#39;avancer? On risque de tomber sur quelque chose de similaire..&quot;</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/280319856438542339/5476a40822cfdd101b23bac70832f0e1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="minewill441#0430" data-user-id="280319856438542339"  style="color: rgb(58, 135, 173)" >T&#233;o Kirk</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="729462547064815657" id="message-729462547064815657">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>T&#233;o ne faisait pas confiance a l&#39;intrus et dit.</em>
+
+-Passe en avant et on verra. De toute fa&#231;on,  c&#39;est pas comme si tu &#233;tait un membre de l&#39;&#233;quipage...
+
+<em>T&#233;o aimait pas cette personne et le faisait voir sans retenue.</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="729463103086919731" id="message-729463103086919731">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ether observe T&#233;o et soupire, m&#234;me pas elle prend la peine de lui dire qu&#39;il dit de la merde, et elle commence &#224; monter les escaliers</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="729463154001707018" id="message-729463154001707018">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Je ne suis pas un membre d&#39;&#233;quipage mais j&#39;ai &#233;t&#233; bien plus utile que toi depuis que je suis arriv&#233;. Je ne suis pas belliqueux, mais me cherche pas T&#233;o.&quot;</div>
+                </div>
+
+
+
+                <div class="chatlog__reactions">
+                        <div class="chatlog__reaction">
+                            <img class="emoji emoji--small" alt="pv" title="pv" src="https://cdn.discordapp.com/emojis/712052732873408703.png">
+                            <span class="chatlog__reaction-count">1</span>
+                        </div>
+                </div>
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/bddf0dd81f1e4e6f6135d6e607c04978.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144"  style="color: rgb(58, 135, 173)" >Ether Larissa</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="729463220384956512" id="message-729463220384956512">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"><span class="mention">#armurerie</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="729463695696199831" id="message-729463695696199831">
+                <div class="chatlog__content">
+                    <div class="markdown">- On va tomber sur quelque chose de similaire. C&#39;est certain.
+<em>Il observe Ether repartir.</em>
+Et bien voil&#224; qui r&#233;sout le probl&#232;me. Quoi qu&#39;il en soit vous saurez, Kirk, qu&#39;on n&#39;enverra jamais de civil droit vers le danger. Pas sous mon commandement.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/280319856438542339/5476a40822cfdd101b23bac70832f0e1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="minewill441#0430" data-user-id="280319856438542339"  style="color: rgb(58, 135, 173)" >T&#233;o Kirk</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="729466135891935312" id="message-729466135891935312">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>T&#233;o part &#224; rire, un rire un peu d&#233;rangeant.</em>
+
+- Un civil !? Mais c&#39;est une blague en ? Un civil ne peut pas s&#39;incruster dans un vaisseau qui a une mission comme celle-l&#224; et avec une bande de militaire de merde qui veut militariser le Mush. La s&#233;curit&#233; est meilleure que cela. Soit il a &#233;t&#233; aid&#233; par N&#233;phiria, soit il est un espion ...
+
+<em>En regardant Hanc, il lui dit.</em>
+
+- Soit j&#39;ai un acces int&#233;gralle &#224; ton astropad, ou bien je ne te ferai jamais confiance. Un point c&#39;est tout le niochon.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330730473821175808/f89407fb1db5582473b1586f0541928a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="wanou#2533" data-user-id="330730473821175808"  style="color: rgb(153, 45, 34)" >Capitaine Morrison - wanou</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="729466778303987803" id="message-729466778303987803">
+                <div class="chatlog__content">
+                    <div class="markdown">- Pour l&#39;instant c&#39;est un prisonnier civil, et c&#39;est tout. On avance.
+<em>Sur ces mots il se dirige vers l&#39;&#233;chelle.</em>
+<img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"> <span class="mention">#armurerie</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/232209628618817537/a04420013543822ea4e1174375cc1b5f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ross#7099" data-user-id="232209628618817537"  style="color: rgb(58, 135, 173)" >Hanc Insitus</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="729466934973694022" id="message-729466934973694022">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Il prend sur lui lors de cette attaque avant de s&#39;&#233;claffer sur la fin.</em>
+
+&quot;Ha ha ha! Bien s&#251;r! Non plus s&#233;rieusement, un astropad ne peut pas de lui-m&#234;me communiquer avec le Syst&#232;me. Donc je dois utiliser votre centre comm. pour transmettre mes donn&#233;es et oui vous pourrez visionner tout ce qui sera transmis au Syst&#232;me.&quot;</div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729467321806094346" id="message-729467321806094346">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Hanc suit le capitaine, souriant, sachant que son pad enregistre cette mission.</em>
+<img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"> <span class="mention">#armurerie</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="729467517109665894" id="message-729467517109665894">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ayagami posa la main sur l&#39;&#233;paule de Hanc et dit d&#39;un air amus&#233;.</em>
+
+- T&#39;inqui&#232;tes pas, si jamais c&#39;est pas une grosse perte de ne pas avoir sa confiance en poche, on ne peut d&#233;j&#224; pas trop lui faire confiance niveau confidentialit&#233;...
+
+<em>L&#226;cha Ayagami, ne tardant pas &#224; se diriger vers l&#39;&#233;chelle dans le but d&#39;aller au prochain niveau.</em></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729467560743141436" id="message-729467560743141436">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"> <span class="mention">#armurerie</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/280319856438542339/5476a40822cfdd101b23bac70832f0e1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="minewill441#0430" data-user-id="280319856438542339"  style="color: rgb(58, 135, 173)" >T&#233;o Kirk</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 12:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="729468510572380201" id="message-729468510572380201">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>T&#233;o le regarda et ses yeux se mirent a luire d&#39;une couleur bleut&#233;. T&#233;o marmonna pour lui-m&#234;me</em>
+
+- Si cette putain de merde recommence &#224; me dire des trucs comme ca, il meurt un point c&#39;est tout ....
+
+<em>T&#233;o du se contr&#244;ler pour ne pas que sa PSI nexplose &quot;l&#39;astropad&quot; en question. Apr&#232;s quelque respiration pour se calmer, il s&#39;engagea dans la prochaine salle.</em>
+<img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"> <span class="mention">#armurerie</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/729412527280357487/0a12d76f006677575facb92a7365d7be.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vaisseau Nucleus#0000" data-user-id="729412527280357487" >Vaisseau Nucleus</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-20 12:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="729469243275608074" id="message-729469243275608074">
+                <div class="chatlog__content">
+                    <div class="markdown">De toute fa&#231;on, T&#233;o ne peut pas d&#233;truire l&#39;astropad.</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219159000090935297/e702f1cf70045c251faa81c0d475f81a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PinguChat12#5524" data-user-id="219159000090935297"  style="color: rgb(58, 135, 173)" >Jack K&#233;dory</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 07:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="729757599737577502" id="message-729757599737577502">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Jack passe la t&#234;te dans le dortoir. La pi&#232;ce semble intact, tellement propre, on dirait un peu ces appartements de pr&#233;sentation. Il y a comme une odeur de cram&#233; qui attire son attention. Sans doute d&#251; aux explosions dans l&#39;armurerie.
+Il h&#233;site &#224; traverser la porte..</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219159000090935297/e702f1cf70045c251faa81c0d475f81a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="PinguChat12#5524" data-user-id="219159000090935297"  style="color: rgb(58, 135, 173)" >Jack K&#233;dory</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="729797968236118167" id="message-729797968236118167">
+                <div class="chatlog__content">
+                    <div class="markdown">[exit --&gt; <span class="mention">#infirmerie-salle-sport</span> ]</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-20 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="729798054118424598" id="message-729798054118424598">
+                <div class="chatlog__content">
+                    <div class="markdown">░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">10-Jul-20 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="730978630066372608" id="message-730978630066372608">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Une fois arriv&#233; Ayagami continua ses recherches, il devait bien y avoir un tourne vis planqu&#233; dans un vieux tiroir &#224; la con...</em></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jul-20 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="730978708063649893" id="message-730978708063649893">
+                <div class="chatlog__content">
+                    <div class="markdown"></div>
+                </div>
+
+
+            <div class="chatlog__embed">
+                <div class="chatlog__embed-color-pill" style="background-color: rgba(99,175,225,255)"></div>
+                <div class="chatlog__embed-content-container">
+                    <div class="chatlog__embed-content">
+                        <div class="chatlog__embed-text">
+                            <div class="chatlog__embed-author">
+                                <img class="chatlog__embed-author-icon" src="https://www.pixenli.com/image/YtG5gOEa" alt="Author icon">
+
+                                <span class="chatlog__embed-author-name">
+                                    Ayagami Rindetsu
+                                </span>
+                            </div>
+
+
+                            <div class="chatlog__embed-description"><div class="markdown"><strong>Echec</strong>  ▬ karma jamais deux sans 3 je suppose... : 
+<img class="emoji " alt="next" title="next" src="https://cdn.discordapp.com/emojis/723131844643651655.png">[<em>D&#233; : 4 (4)  | Implant : 0 | Seuil : 3</em> ]</div></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/169148721538269185/730a95f31505485284d655ad08ad533e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryujin H&#245;Đer#8729" data-user-id="169148721538269185"  style="color: rgb(74, 155, 121)" >Ayagami Rindetsu</span>
+
+
+        <span class="chatlog__timestamp">10-Jul-20 04:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="730978972699197540" id="message-730978972699197540">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Ayagami disparu dans la salle inf&#233;rieure.</em></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="730979029913698344" id="message-730979029913698344">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="exit" title="exit" src="https://cdn.discordapp.com/emojis/719604904653750347.png"> <span class="mention">#mess-quartier-equipage</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div><div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/204255221017214977/2fa57b425415134d4f8b279174131ad6.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="YAGPDB.xyz#8760" data-user-id="204255221017214977"  style="color: rgb(84, 97, 185)" >&#128203;($)</span>
+
+        <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-20 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="734830504230125679" id="message-734830504230125679">
+                <div class="chatlog__content">
+                    <div class="markdown">░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 49 message(s)</div>
+</div>
+
+</body>
+</html>
