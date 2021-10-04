@@ -1,0 +1,1086 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>La biblioth&#232;que infinie - &#128270;╏lexique</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #f9f9f9;
+            color: #657b83;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(6, 6, 7, 0.08);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #2f3136;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid #eceeef;
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: #747f8d;
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: #747f8d;
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f3f5;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: #747f8d;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(249, 249, 249, 0.3);
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #36393e;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(79, 84, 92, 0.06);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #747f8d;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid #eceeef;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/808837717491712030/cdedfc3a25b6ac004321d9df56615b26.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">La biblioth&#232;que infinie</div>
+        <div class="preamble__entry">─────『CONTEXTE』 ───── / &#128270;╏lexique</div>
+
+            <div class="preamble__entry preamble__entry--small">La plupart des mots que vous rencontrerez dans le lore et le rp ont leur d&#233;finition ici.
+Vous pouvez chercher dans l&#39;annexe avec la commande !search &lt;mot&gt;</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-21 10:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="818772441689620481" id="message-818772441689620481" title="Message sent: 09-Mar-21 10:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Clairvoyant</u></strong> : Humain &#233;tant capable de percevoir le monde de l&#39;Invisible, et pouvant poss&#233;der - ou non - des capacit&#233;s surnaturelles ou d&#39;arts magiques.
+<em>Exemple</em> : Sorcier•&#232;re, Mage, M&#233;dium, &#201;l&#233;mentaliste...</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Mar-21 11:34 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-21 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="818938558785912844" id="message-818938558785912844" title="Message sent: 09-Mar-21 09:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Chim&#232;re</u></strong> : &#202;tre aucunement semblable &#224; un humain, de pr&#232;s comme de loin. Ils sont invisibles aux Embrum&#233;s. Les Embrum&#233;s en ayant crois&#233;s les ont auparavant appel&#233; Monstre, mais la plupart des Chim&#232;res sont des esp&#232;ces intelligentes comme le sont les Hommes.
+<em>Exemple</em> : Tr&#233;ant, gobelin, dragon...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">10-Mar-21 11:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="819342778218840114" id="message-819342778218840114" title="Message sent: 10-Mar-21 11:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Embrum&#233;s</u></strong> : Personne ne pouvant voir &#224; travers l&#39;Ether, et ne percevant donc pas le monde de l&#39;invisible.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819344353625374761" id="message-819344353625374761" title="Message sent: 11-Mar-21 12:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>&#201;ther</u></strong> : Nom donn&#233; &#224; la fronti&#232;re entre le monde visible et invisible. Plus proche du concept que d&#39;une v&#233;ritable Brume, elle masque les lieux invisibles en les transformant par le biais d&#39;illusion repoussant naturellement les Embrum&#233;s. 
+La plupart du temps, si un Embrum&#233; per&#231;oit un &#233;th&#233;r&#233; la traverser, il va simplement oublier ou cr&#233;er une explication rationnelle. 
+<em>Synonyme</em> : Brume</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-May-21 09:16 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">12-Mar-21 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="819879881079783454" id="message-819879881079783454" title="Message sent: 12-Mar-21 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>&#201;th&#233;r&#233;</u></strong> : Nom donn&#233;s &#224; ceux faisant parti du monde de l&#39;&#201;ther, regroupant &#224; la fois clairvoyant, &#233;voqu&#233;s et chim&#232;res.</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Mar-21 11:30 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880727763615745" id="message-819880727763615745" title="Message sent: 12-Mar-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Evoqu&#233;s</u></strong> : &#202;tre proche des humains mais poss&#233;dant des caract&#233;ristiques anormales. Les Embrum&#233;s les per&#231;oivent comme des humains normaux, sans aucune caract&#233;ristiques inhumaines.
+<em>Exemple</em> : Vampire, Zombie, elfe...</span>
+
+                                <span class="chatlog__edited-timestamp" title="14-May-21 11:38 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880775939653673" id="message-819880775939653673" title="Message sent: 12-Mar-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><strong>Invisible</strong></u> : Ne pouvant &#234;tre vu par les humains, et n&#39;existant pas &#224; leur yeux ainsi qu&#39;&#224; leur administration. Terme regroupant en g&#233;n&#233;ral, certains &#233;voqu&#233;s et toutes les chim&#232;res.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880806741966878" id="message-819880806741966878" title="Message sent: 12-Mar-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Outbreak</u></strong> : Terme anglais d&#233;signant le ph&#233;nom&#232;ne de d&#233;couverte du monde de l&#39;invisible par un embrum&#233;, ou plus exactement, le processus d&#39;appr&#233;ciation de cette nouvelle r&#233;alit&#233;. Il est de plus en plus courant car, auparavant, les personnes trouvaient des explications dans les mythes et l&#233;gendes, mais la disparition de ses derni&#232;res et l&#39;avanc&#233;e de la Science font qu&#39;il n&#39;y a pas d&#39;explication possible au ph&#233;nom&#232;ne surnaturel rencontr&#233;, et donc, provoque l&#39;Outbreak.</span>
+
+                                <span class="chatlog__edited-timestamp" title="13-Mar-21 12:47 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880837206114304" id="message-819880837206114304" title="Message sent: 12-Mar-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Outbreaker</u></strong> : Terme anglais d&#233;signant un embrum&#233; ayant d&#233;couvert le monde invisible. La majorit&#233; des Outbreaker meurent sur le coup d&#39;une attaque vasculaire c&#233;r&#233;brale (AVC) et une autre partie en devient folle. Seule une petite partie devient un clairvoyant. La majorit&#233; de ses nouveaux clairvoyants n&#39;ont pas de capacit&#233;s surnaturels, mais il a &#233;t&#233; rapport&#233;, qu&#39;apr&#232;s l&#39;outbreak, certains d&#233;veloppaient des capacit&#233;s.</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Mar-21 11:43 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880876586303498" id="message-819880876586303498" title="Message sent: 12-Mar-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Principaut&#233; d&#39;Aralicia</u></strong> : Situ&#233; au niveau du point N&#233;mo de la terre, entour&#233; d&#39;une brume et de mirage, l&#39;&#238;le volcanique d&#39;Aralicia est le seul pays compos&#233; uniquement d&#39;Invisible. Il est dirig&#233; par un conseil de 6 personnes qui change tous les 5 ans, &#233;lus d&#233;mocratiquement, et une famille Imp&#233;riale s&#39;occupe de choisir les d&#233;cisions, bien que plus le temps passe et plus la famille n&#39;a qu&#39;un impact minime sur la politique de l&#39;&#238;le.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819880912975560754" id="message-819880912975560754" title="Message sent: 12-Mar-21 11:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Visible</u></strong> : Terme regroupant l&#39;ensemble des personnes &#233;tant per&#231;u par les embrum&#233;s, et qui existe aux yeux de leur administration. Regroupe tous les clairvoyants, mais aussi certains &#233;voqu&#233;s.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819881282682486814" id="message-819881282682486814" title="Message sent: 12-Mar-21 11:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Arts</u></strong> : Terme anglais regroupant les capacit&#233;s surnaturels et magiques que peuvent poss&#233;der les &#201;th&#233;r&#233;s.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">20-Apr-21 10:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="834166824173436938" id="message-834166824173436938" title="Message sent: 20-Apr-21 10:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><strong>Eden</strong></u> : Nom donn&#233;e &#224; une cit&#233; disparue, flottant auparavant dans la haute atmosph&#232;re terrestre. On ne pouvait y acc&#233;der que par des vaisseaux extr&#234;mement contr&#244;l&#233;, ou par vol. Cependant, toute personne n&#39;ayant pas l&#39;autorisation d&#39;entrer se faisait ex&#233;cuter. Mais, cela fait plus de 1000 ans que le monde terrestre n&#39;a plus entendu parler de l&#39;Eden, et l&#39;&#238;le est consid&#233;r&#233;e comme perdue.</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-May-21 05:29 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">21-Apr-21 06:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="834281053916758016" id="message-834281053916758016" title="Message sent: 21-Apr-21 06:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Enfer</u></strong> : Contrairement au Paradis, les enfers n&#39;ont jamais &#233;t&#233; un unique lieu, mais plut&#244;t un ensemble de villes ind&#233;pendantes souterraine, g&#233;n&#233;ralement dans l&#39;antre des volcans. Actuellement, la plus grand ville des Enfers se trouve dans le volcan d&#39;Aralicia, et elle dirige l&#39;ensemble des cit&#233;s infernales - bien que chacune soient ind&#233;pendantes - elles se r&#233;unissent r&#233;guli&#232;rement afin de discuter de leur affaires internes. Les habitants des souterrains sont nomm&#233;s &quot;D&#233;mons&quot;, bien qu&#39;ayant des pouvoirs, formes, capacit&#233;s... Diff&#233;rentes.</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Apr-21 07:21 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">16-May-21 04:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="843489258937516064" id="message-843489258937516064" title="Message sent: 16-May-21 04:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><strong>R&#234;veur</strong></u> : Nom donn&#233; &#224; ceux ayant acc&#232;s, par leur r&#234;ve, &#224; la Biblioth&#232;que Infinie.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">16-May-21 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="843510635290820609" id="message-843510635290820609" title="Message sent: 16-May-21 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Paradis</u></strong> : On appelle aujourd&#39;hui Paradis l&#39;ensemble des &#238;les flottantes dans la haute-atmosph&#232;re, et leur habitants sont nomm&#233;s &quot;anges&quot;, bien qu&#39;&#233;tant de forme, pouvoirs, capacit&#233;s, long&#233;vit&#233;, diff&#233;rentes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">23-May-21 11:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="846143307536662569" id="message-846143307536662569" title="Message sent: 23-May-21 11:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Ange</u></strong> : Habitant du Paradis. Tout comme les d&#233;mons, il y a plusieurs lign&#233;s, et la plupart des anges ne se ressemblent pas. 
+<em>Synonyme</em> : Paradisien — Mot utilis&#233; par certains anges conservateurs.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="846143695069511691" id="message-846143695069511691" title="Message sent: 23-May-21 11:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><u><strong>D&#233;mon</strong></u> : Habitants des enfers. Tout comme les anges, il existe plusieurs lign&#233;s d&#39;aspect, pouvoir, caract&#232;re tr&#232;s diff&#233;rents.
+<em>Synonyme</em> : Inferno (pl. &quot;Inferni&quot;) — Mot utilis&#233; par les administrations pour parler des d&#233;mons.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">06-Jun-21 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="851216563008962560" id="message-851216563008962560" title="Message sent: 06-Jun-21 11:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong><u>Golem</u></strong> : Premiers automates organiques. Peu utilis&#233; de nos jours car n&#233;cessitant beaucoup de temps et de ma&#238;trise magique pour &#234;tre programmables et utilisables, ils ont &#233;t&#233; remplac&#233; par des robots technomagiques. 
+On en retrouve parfois &#224; Aralicia ou dans d&#39;anciennes ruines antiques.</span>
+
+                                <span class="chatlog__edited-timestamp" title="05-Sep-21 06:23 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 19 message(s)</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,826 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>La biblioth&#232;que infinie - &#127775;╏actualit&#233;-magique</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #f9f9f9;
+            color: #657b83;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(6, 6, 7, 0.08);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #2f3136;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid #eceeef;
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: #747f8d;
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: #747f8d;
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f3f5;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: #747f8d;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(249, 249, 249, 0.3);
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #36393e;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(79, 84, 92, 0.06);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #747f8d;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid #eceeef;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/808837717491712030/cdedfc3a25b6ac004321d9df56615b26.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">La biblioth&#232;que infinie</div>
+        <div class="preamble__entry">『 communication』 / &#127775;╏actualit&#233;-magique</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">23-May-21 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="845793209883688970" id="message-845793209883688970" title="Message sent: 23-May-21 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Les deux pr&#233;sentateurs, habituellement souriant et joviales, &#233;taient bl&#234;mes. Les images qu’ils venaient de voir, et qu’ils avaient choisi de diffuser, &#233;taient suffisamment r&#233;pugnante et sinistre que m&#234;me des journalistes endurcis avaient du mal.
+
+— Les images qui vont suivre, commen&#231;a une jeune femme &#224; la peau blafarde et aux oreilles pointues, sont d’une rare violence. Nous d&#233;conseillons donc les personnes sensibles ainsi que les enfants de rester devant.
+— Nous vous retrouvons dans une dizaine de minutes, continua un homme &#224; la peau &#233;cailleuse.
+
+Une heure s’afficha &#224; l’&#233;cran, pour permettre aux &#226;mes sensibles de quitter l’&#233;mission le temps de la dur&#233;e de la vid&#233;o.
+
+* * *
+
+Cela devait &#234;tre une mission simple et normale.
+
+Nightingale d&#233;testait son boulot, vraiment. Il consistait &#224; se laisser mordre — voire d&#233;vor&#233;e — par des monstres pour que ses capacit&#233;s... Bref. Pour qu&#39;ils meurent plus ou moins empoisonn&#233;s.
+
+Ce jour-l&#224;, elle travaillait avec sa colloque et ami, Kali. Mais les choses avaient mal tourn&#233;s quand elles &#233;taient tomb&#233;es sur cette... Chose. Cr&#233;ature ou monstre, serait une insulte envers ces derni&#232;res tant il &#233;tait ignoble d’apparence.
+M&#234;me les ogres avaient la d&#233;cence d’avoir une apparence &#224; peu pr&#232;s regardable !
+
+Sa peau &#233;taient noire, recouverte d’une sorte de boue terreuse. Son visage &#233;taient constitu&#233; d&#39;une cavit&#233; b&#233;ante, qui n&#39;avait m&#234;me pas la politesse de poss&#233;der des dents. Par contre, une langue immense, bleus, en sortaient. Il se tenait sur deux pattes insecto&#239;des et son tronc lisse sortaient quatre autres pattes, dont il se servait actuellement pour retirer l&#39;&#233;p&#233;e qui &#233;tait plant&#233; dans son ventre.
+
+Les deux femmes — et l&#39;horreur — se trouvait en pleine rue et les badauds — essentiellement des Embrum&#233;s — commen&#231;ait &#224; se dire qu&#39;il y avait quelque chose d&#39;&#233;tranges. Certains sortaient m&#234;me leurs t&#233;l&#233;phones pour filmer.</span>
+
+                                <span class="chatlog__edited-timestamp" title="23-May-21 10:55 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="845793341756538941" id="message-845793341756538941" title="Message sent: 23-May-21 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Kali sera les dents, et fit un bond en arri&#232;re, commen&#231;ant &#224; incanter des &#233;p&#233;es flottantes, qui irait s&#39;enfoncer dans le corps de leur cible.
+Night, elle, enfon&#231;a ses mains dans sa veste rouge, puis soupira.
+
+— Je ne suis <em>vraiment</em> pas assez bien pay&#233; pour ce job, tu crois pas ?
+— J&#39;ai pas d&#39;avis sur la question, r&#233;pondit simplement Kali en pointant la cr&#233;ature pour la viser.
+
+Ce fut &#224; cet instant pr&#233;cis que Night entendit une voix et <em>phasa</em>. Cela lui arrivait r&#233;guli&#232;rement : elle perdait tout sens de sa r&#233;alit&#233; ainsi que du temps, et elle faisait des choses qu&#39;elle ne contr&#244;lait m&#234;me pas.
+
+Les yeux vides, elle s&#39;approcha de la cr&#233;ature, qui l&#39;observa, penchant sa t&#234;te sur le c&#244;t&#233;, cherchant &#224; comprendre ce que cette dr&#244;le d&#39;humaine &#224; l&#39;odeur bizarre venait faire d&#39;elle. En v&#233;rit&#233;, le monstre n&#39;avait pas l&#39;intention de manger Nightingale, car il n&#39;&#233;tait pas du genre &#224; manger des cadavres.
+Enfin, &#224; l&#39;origine, en tout cas, parce qu&#39;une fois qu&#39;elle fut pr&#232;s de lui, il eut sacr&#233;ment envie de la d&#233;vorer.
+
+Sa t&#234;te s&#39;&#233;tendit de son corps, et sa bouche mordit dans la chair froide qui &#233;tait le cou de Nightingale, lui arrachant la t&#234;te.
+Mais, Nightingale n’&#233;tait m&#234;me pas vivante, et m&#234;me sans t&#234;te, elle pouvait continuer de bouger. Ce qu’elle fit. Se faire d&#233;vorer composait essentiellement son travail, de toute fa&#231;on.
+
+Le sang noir et visqueux de la jeune femme gicla. Ses mains se tendirent vers l&#39;&#233;p&#233;e brillante plant&#233;e dans la cr&#233;ature, et il se passa en m&#234;me temps deux choses :
+
+Primo, un &#233;clat de lumi&#232;re dor&#233; sorti de la cr&#233;ature, et projeta ce qui restait de Nightingale en arri&#232;re.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="845793396332560394" id="message-845793396332560394" title="Message sent: 23-May-21 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Secondo, la cr&#233;ature recracha sa t&#234;te. Trop tard, cela dit, puisque d&#233;j&#224;, des cellules de la zombies poussaient &#224; l&#39;int&#233;rieur de lui. Des proto-bras sortirent de lui, le transper&#231;ant de l&#39;int&#233;rieur, et, au m&#234;me moment, des &#233;p&#233;es magiques le transperc&#232;rent.
+La cr&#233;ature parue surprise que sa nourriture lui ait pouss&#233; dans le ventre, et elle poussa un rugissement de fureur, qui s&#39;&#233;teint lorsqu&#39;une lance lui traversa le gosier.
+
+Nightingale &#233;tait de nouveau en un morceau. Elle se releva, et pris de nouveau l&#39;&#233;p&#233;e.
+La voix hurla.
+La magie d&#233;chiqueta son bras, ne laissant qu&#39;un morceau d&#39;os, mais qui se reconstituait d&#233;j&#224;. Deux magies s&#39;affrontaient.
+La voix ne voulait pas d&#39;elle, mais Nightingale &#233;tait incapable de l&#226;cher l&#39;&#233;p&#233;e, qui &#233;tait comme coll&#233;e &#224; sa peau.
+
+La douleur &#233;tait impossible. Elle s&#39;&#233;croula, vomissant une quantit&#233; effroyable de bile noire. Kali se pr&#233;cipitait vers elle, mais, comme un animal bless&#233;, Nightingale refusa de rester et s&#39;entoura de sa magie.
+
+Le cadavre qu&#39;elle &#233;tait se releva p&#233;niblement, et elle s&#39;enfon&#231;a dans les ruelles.
+
+Kali, de son c&#244;t&#233;, se rendit compte qu&#39;elle &#233;tait entour&#233;e d&#39;Embrum&#233;, qui la filmait comme si elle tournait dans un film. Joyeusement, faisant semblant d&#39;&#234;tre la plus grande actrice de son temps, elle agita la main.
+On entendit, &#233;videmment, rapidement les sir&#232;nes de la police, et les vid&#233;os se coup&#232;rent.
+
+* * *
+
+Quelqu&#39;un &#233;teint la t&#233;l&#233;.</span>
+
+                                <span class="chatlog__edited-timestamp" title="23-May-21 08:28 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">24-May-21 02:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="846176970207395870" id="message-846176970207395870" title="Message sent: 24-May-21 02:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Photo du monstre : (faut l&#39;imaginer sans dents, par contre)</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/812607940120281168/846176968076427284/694.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/812607940120281168/846176968076427284/694.png" alt="Image attachment" title="Image: 694.png (323,08 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 4 message(s)</div>
+</div>
+
+</body>
+
+</html>
