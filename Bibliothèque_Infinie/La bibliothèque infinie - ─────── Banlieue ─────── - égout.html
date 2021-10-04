@@ -1,0 +1,1344 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>La biblioth&#232;que infinie - &#233;gout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #f9f9f9;
+            color: #657b83;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(6, 6, 7, 0.08);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #2f3136;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid #eceeef;
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: #747f8d;
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: #747f8d;
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f3f5;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: #747f8d;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(249, 249, 249, 0.3);
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #36393e;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(79, 84, 92, 0.06);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #747f8d;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid #eceeef;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/808837717491712030/cdedfc3a25b6ac004321d9df56615b26.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">La biblioth&#232;que infinie</div>
+        <div class="preamble__entry">─────── Banlieue ─────── / &#233;gout</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 10:58 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="822227450888585287" id="message-822227450888585287" title="Message sent: 18-Mar-21 10:58 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/810964202210328696/822227448422596658/egout-paris3_1_730_253.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/810964202210328696/822227448422596658/egout-paris3_1_730_253.png" alt="Image attachment" title="Image: egout-paris3_1_730_253.png (180,58 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-May-21 11:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="846139079322107934" id="message-846139079322107934" title="Message sent: 23-May-21 11:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">La zombie se tra&#238;nait dans les &#233;gouts, sa main tenant encore l&#39;&#233;p&#233;e qui continuait &#224; la rejeter et d&#233;chiqueter son corps par la m&#234;me occasion. Elle s&#39;&#233;tait laiss&#233; tomb&#233; dans les &#233;gouts, mais &#224; force d&#39;enchainer les r&#233;g&#233;n&#233;rations, sa sant&#233; mentale commen&#231;ait &#224; en p&#226;tir, ainsi que ses autres sens d&#39;ailleurs. Ce qui impliquait qu&#39;elle &#233;tait recouverte d&#39;&#233;corchure.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">26-Jun-21 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="858430154359177216" id="message-858430154359177216" title="Message sent: 26-Jun-21 09:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Une voix commen&#231;ait soudainement a r&#233;sonner dans les &#233;go&#251;ts. C&#39;&#233;tait une voix de d&#233;mon, qui semblait plut&#244;t sarcastique et froide</em>
+??? : Et tu me rappelles ce qu&#39;on fais dans ces &#233;gouts d&#233;j&#224; ? Tu comptes faire quoi le chat ? Attraper des rats ? Tu vas plut&#244;t chopper le t&#233;tanos.
+
+<em>Une autre voix un peu plus froide et blas&#233;e, mais semblant appartenir a une cr&#233;ature plus normale, r&#233;pondit alors a la voix de d&#233;mon</em>
+- La ferme Skorpio. C&#39;est important qu&#39;on &#233;tudie ces &#233;go&#251;ts. Non seulement &#231;a nous fera une bonne cachette si on est recherch&#233;, mais en plus c&#39;est pleins de petits passages secrets qui nous permettrons de naviguer ou on veut.
+
+Skorpio : Ouais bah tu prendras une douche en rentrant parce que la on dirais l&#39;odeur d&#39;un joueur de League of Legends.
+
+<em>L&#39;autre voix soupira lourdement, exasp&#233;r&#233; par les remarques de son camarade</em>
+- Arr&#234;te d&#39;essayer de faire des &quot;r&#233;f&#233;rences de jeunes&quot; Skorpio. T&#39;as je sais pas combien de mill&#233;naires. Et vu l&#39;heure qu&#39;il est, tu devrais faire une sieste l&#39;anc&#234;tre.</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Jun-21 09:43 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jun-21 10:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="858436620461277205" id="message-858436620461277205" title="Message sent: 26-Jun-21 10:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>La zombie entend. Des bruits. Des sons. Odeur... Vivant.
+Depuis le temps, elle s&#39;&#233;tait roul&#233;e en boule dans un coin, serrant contre elle l&#39;&#233;p&#233;e maudite dont elle a finit par faire pli&#233;e, devenant sa nouvelle ma&#238;tresse. Mais, elle avait faim. Et soif. 
+Elle se releva, dans un bruit de craquement, et dans un long g&#233;missement qui se r&#233;percuta dans les &#233;gouts</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">26-Jun-21 10:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="858439576527044618" id="message-858439576527044618" title="Message sent: 26-Jun-21 10:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>La cr&#233;ature entend soudainement un bruit. Ce qui semblait pas bon signe</em>
+- T&#39;entends &#231;a Skorpio...
+Skorpio : Rooh t&#39;inqui&#232;te c&#39;est s&#251;rement le rat sensei que tu cherchais pour t&#39;enseigner le Kung-fu.
+- J&#39;suis s&#233;rieux Skorpio, on dirait bien que quelqu&#39;un est a nos trousses.
+
+<em>Les 2 comp&#232;res se turent. La cr&#233;ature profita du silence pour essayer d&#39;imaginer un plan, observant son environnement de combat et les issues de sortis. Au vu du g&#233;missement, il n&#39;imaginais pas vraiment une b&#234;te mais une cr&#233;ature humano&#239;de, comme un vampire ou un goule, quelque chose qui avait pris comme rep&#232;re les &#233;go&#251;ts pour se prot&#233;ger de la lumi&#232;re du soleil et qui sortait de nuit pour se nourrir de chair fra&#238;che. Quelque chose dont notre jeune ami venait de d&#233;ranger, d&#39;empi&#233;ter sur le territoire. Dans tout les cas, il fallait l&#39;&#233;liminer avant de devenir son repas.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jun-21 10:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="858447174103072829" id="message-858447174103072829" title="Message sent: 26-Jun-21 10:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">— Ah putain &#231;a fait mal sa m&#232;re la pute.
+<em>L&#226;che Nightingales. Elle retrouvait ses esprits, principalement parce qu&#39;Excalibur lui hurlait dessus. Difficile de perdre ses esprits quand quelqu&#39;un te hurle des insultes. 
+D&#39;ailleurs, en parlant d&#39;excalibur, elle l&#226;che cette derni&#232;re, qui, en quelque seconde, se retrouve entour&#233; dans un foureau, qu&#39;elle accroche &#224; ... Ce qui restait de sa ceinture.
+Elle soupire</em>
+
+— Y&#39;a quelqu&#39;un ? <em>fit-elle, plus doucement</em> J&#39;ai faim~</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-21 12:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="858478118569771010" id="message-858478118569771010" title="Message sent: 27-Jun-21 12:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spooky Koara#4378">@Spooky Koara</span> ?)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-21 01:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="859038638276476968" id="message-859038638276476968" title="Message sent: 28-Jun-21 01:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>La cr&#233;ature se faufila dans un tuyau des &#233;go&#251;t pour arriver juste derri&#232;re la cr&#233;ature qu&#39;il devait &#233;liminer et tenta une attaque surprise (roll 61)</em>
+
+<em>Il surgissa avec un petit g&#233;missement et donna un coup de faux a la zombie qu&#39;elle pouvait par ailleurs parer si elle avait de bons r&#233;flexes</em>
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jun-21 03:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="859063008369442838" id="message-859063008369442838" title="Message sent: 28-Jun-21 03:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">[2] 
+<em>La zombie est envoy&#233; au sol, n&#39;ayant pas eu les r&#233;flexe pour esquiver ou parer, puisqu&#39;elle venait litt&#233;ralement de se r&#233;g&#233;n&#233;rer en boucle pendant un moment. Elle pousse un g&#233;missement lorsqu&#39;elle est jet&#233; au sol, se repliant en position foetale</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 04:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="859801465001213992" id="message-859801465001213992" title="Message sent: 30-Jun-21 04:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>En se tournant pour voir ce qui l&#39;avait attaqu&#233;, la zombie pouvait voir une myst&#233;rieuse figure aux longs cheveux qui cachait un de ses yeux, l&#39;oeil visible &#233;tait rouge luisant et la fixait. La sombre figure tenait en sa main une faux, c&#39;&#233;tait son arme. Elle pouvait ressentir une &#233;nergie assez puissante et malveillante dans cette faux. Enfin, son visage et ses mains ne semblaient pas humains mais plut&#244;t poilu, bien que l&#39;obscurit&#233; environnant en laissait peu voir. La cr&#233;ature fixa pendant un moment ce qu&#39;elle venait d&#39;attaquer. Une voix ne venant pas d&#39;elle mais plut&#244;t d&#39;une pr&#233;sence autour d&#39;elle n&#39;ayant pas de corps physique retentissait</em>
+Skorpio : Alors elle, elle a l&#39;odeur d&#39;un joueur de Genshin
+
+<em>La cr&#233;ature soupira silencieusement, comme exasp&#233;r&#233; par la pr&#233;sence qui l&#39;accompagnait et pris le temps d&#39;analyser ce qu&#39;elle venait d&#39;attaquer. Effectivement, c&#39;&#233;tait une zombie. Une cr&#233;ature qui se nourrit s&#251;rement d&#39;humains. La zombie lui paraissait faible et avec de tr&#232;s mauvais r&#233;flexe. Il pouvait tenter de lui ass&#233;ner le coup de gr&#226;ce. En levant sa faux pour la d&#233;capiter, il s&#39;arr&#234;ta soudainement en plein milieu de son mouvement</em>
+Skorpio : Qu&#39;est-ce que tu branles s&#233;rieusement, tue-la.
+
+<em>La voix de la cr&#233;ature retentit, paraissant tr&#232;s froide</em>
+- C&#39;est bizarre.
+Skorpio : Qu&#39;est-ce que tu trouves bizarre ?
+- Elle est cens&#233; vouloir nous bouffer non ? Donc elle aurait agi plus soudainement comme une b&#234;te sauvage. Pourquoi fait-elle la morte ?
+Skorpio : Ne baisse pas ta garde, c&#39;est s&#251;rement une strat&#233;gie pour te d&#233;stabiliser.
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Jun-21 04:26 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 04:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="859805203372572694" id="message-859805203372572694" title="Message sent: 30-Jun-21 04:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Nightingale essaya de brancher son cerveau. Lentement mais s&#251;rement. 
+Elle avait Excalibur, sa magie, mais autant d&#39;&#233;nergie qu&#39;un sac de patate atteint du mildiou. Impossible de l&#39;utiliser.
+Elle avait paum&#233; son t&#233;l&#233;phone dans sa fuite.
+Et impossible d&#39;utiliser les &#201;criture de l&#39;Echo pour appeler Kali &#224; l&#39;aide. 
+Du coup il lui restait pas grand chose.
+Mais, alors, vraiment pas grand chose. Genre 0.
+
+Bon, elle savait parler quand m&#234;me, donc... Autant tent&#233;</em>
+
+— C&#39;est parce que je suis une zombie bizarre. Et normalement je sens bon. 
+
+<em>OK c&#39;&#233;tait pas la meilleure des strat&#233;gie</em>
+
+— Je m&#39;appelle Nightingales, je suis membre de l&#39;Echo-
+
+<em>&#199;a pourrait &#234;tre mieux. Pas ouf, mais mieux</em>
+
+<span class="mention" title="Spooky Koara#4378">@Spooky Koara</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 04:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="859809140792623124" id="message-859809140792623124" title="Message sent: 30-Jun-21 04:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>L&#39;&#233;trange homme avait &#233;cout&#233; les paroles de la jeune fille et concentrer son ou&#239;e sur ses battements de coeur pour voir si elle mentait. Une membre de l&#39;Echo ? Int&#233;r&#233;ssant, une affaire avec laquelle il pouvait interf&#233;rer s&#251;rement. Dans tout les cas, la tuer maintenant ne semblait pas &#234;tre une solution viable. Et dans tout les cas, elle semblait innofensive. Il baissa son arme</em>
+Skorpio : Qu&#39;est-ce que tu fous ? On aurais pu la tuer ou la capturer pour s&#39;amuser avec ~
+
+<em>Exasp&#233;r&#233; par la petite voix qui venait de retentir, l&#39;homme regarda sa faux</em>
+- Je ne suis pas comme toi &#224; essayer d&#39;abuser des plus faibles, Skorpio.
+
+<em>Il regarda ensuite la jeune demoiselle. Mouais, c&#39;&#233;tait clairement pas noble d&#39;essayer de la tuer surtout qu&#39;elle semblait vraiment innofensive. Les standards de l&#39;Echo avaient s&#251;rement bien baiss&#233;.</em>
+- Je suppose que nous sommes coll&#232;gues alors. Mon nom est Koara. Cet endroit est votre repaire ?
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 04:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="859809508469506048" id="message-859809508469506048" title="Message sent: 30-Jun-21 04:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Elle soupire de soulagement. Ca n&#39;&#233;tait pas pass&#233; loin. Faible ? Elle poss&#233;dait Excalibur et une magie puissante... Quand elle n&#39;&#233;tait pas affam&#233;e.</em>
+— Non. Je viens ici quand je suis bless&#233;e. J&#39;ai un vrai appartement normalement. Mais disons... Vous avez pas vu les infos n&#39;est-ce pas ? 
+<span class="mention" title="Spooky Koara#4378">@Spooky Koara</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="859810747836399666" id="message-859810747836399666" title="Message sent: 30-Jun-21 05:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Koara rangea donc son arme et tenta la conversation avec la zombie. Histoire d&#39;obtenir des informations utiles...</em>
+- Oh, je ne regarde pas beaucoup la t&#233;l&#233;. Je suppose que j&#39;ai encore loup&#233; un &#233;pisode. Quelque chose vous a attaqu&#233; je suppose ?
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 05:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="859817430648881172" id="message-859817430648881172" title="Message sent: 30-Jun-21 05:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>La jeune femme fait la moue, c&#39;&#233;tait bien sa veine, &#231;a</em>
+— Voui, et on a &#233;t&#233;... Vu, on va dire. Se faisant j&#39;ai r&#233;cup&#233;r&#233; &#231;a. <em>dit-elle en pointant la lame &#224; sa ceinture</em> Excalibur, a-ce-qui para&#238;t...
+<em>Elle soupire l&#233;g&#232;rement</em>
+— Mais la route a &#233;t&#233; longue, et mon corps s&#39;est d&#233;truit puis reconstitu&#233;, en boucle. Je ne sais pas combien de temps est pass&#233; depuis que je suis ici... Et je cr&#232;ve la dalle.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="859820118904012840" id="message-859820118904012840" title="Message sent: 30-Jun-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Le jeune homme regarda son &#233;p&#233;e. Excalibur, l&#39;&#233;p&#233;e des Rois ? En possession d&#39;une cr&#233;ature qui semblait aussi... Faible ? Cette cr&#233;ature cachait s&#251;rement une plus grande puissance qu&#39;il l&#39;imaginais. Enfin, une deuxi&#232;me arme l&#233;gendaire ne l’int&#233;ressait pas, une &#233;tant d&#233;j&#224; bien assez. Pour le moment, il devait voir comment l&#39;aider</em>
+- Je suppose que je peux essayer de vous sortir de la et de vous mettre en lieu s&#251;r. Par contre pour la nourriture, tant que vous me bouffez pas, on devrait pouvoir s&#39;entendre. Apr&#232;s &#231;a, il va me falloir des informations sur votre mission et sur la chose qui vous a attaqu&#233;.
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 05:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="859821188510515250" id="message-859821188510515250" title="Message sent: 30-Jun-21 05:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Elle soupire</em>
+— T&#39;inqui&#232;te, la chaire humaine est immonde. Et caoutchouteuse. Et j&#39;ai pas pour habitude de manger les gens, dans tous les cas. Pour le reste, h&#233;... Ok. 
+<em>Elle tente de se relever, tant bien que mal, mais titube et s&#39;&#233;croule</em>
+<span class="mention" title="Spooky Koara#4378">@Spooky Koara</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 05:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="859823478629597224" id="message-859823478629597224" title="Message sent: 30-Jun-21 05:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>La myst&#233;rieuse voix de la pr&#233;sence qui entourait Koara retentit d&#39;une mani&#232;re sarcastique</em>
+Skorpio : Ah bon ? Moi je trouve qu&#39;elle a plut&#244;t bon go&#251;t
+
+<em>Koara semblait irrit&#233; par les interventions de son compagnon et souffla, comme pour montrer une sorte d&#39;exasp&#233;ration. Il releva la zombie et la fit tenir a son &#233;paule</em>
+- Bon, on verra plus tard pour &#231;a. Tu veux que j&#39;essaye de te ramener chez toi ou bien j&#39;essaye de te ramener la ou j&#39;habite ?
+
+<span class="mention" title="Mara#3000">@Kali | Nightingales [Mara]</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/846139078297911326/e0afade1483368f367b88fff30ba7c26.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nightingales#0000" data-user-id="846139078297911326" style="">Nightingales</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="859825399553589318" id="message-859825399553589318" title="Message sent: 30-Jun-21 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">— Il vaut mieux que je me fasse toute petite... Et puis, si c&#39;est plus pr&#234;t...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/845989710274887701/e612ae924dd80cd979c8aed1f0773ede.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spooky Koara#4378" data-user-id="845989710274887701" style="color: rgb(101,163,140)">Spooky Koara</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-21 07:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="859846500908531742" id="message-859846500908531742" title="Message sent: 30-Jun-21 07:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Koara continua a tra&#238;ner la jeune zombie jusqu&#39;a son antre</em>
+[Exit avec Nightingales]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 20 message(s)</div>
+</div>
+
+</body>
+
+</html>

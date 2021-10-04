@@ -1,0 +1,1451 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>La biblioth&#232;que infinie - &#127762;╏&#233;glise</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #f9f9f9;
+            color: #657b83;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(6, 6, 7, 0.08);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #2f3136;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid #eceeef;
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: #747f8d;
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: #747f8d;
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f3f5;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: #747f8d;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(249, 249, 249, 0.3);
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #36393e;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(79, 84, 92, 0.06);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #747f8d;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid #eceeef;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/808837717491712030/cdedfc3a25b6ac004321d9df56615b26.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">La biblioth&#232;que infinie</div>
+        <div class="preamble__entry">───── VIEILLE VILLE ────── / &#127762;╏&#233;glise</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 10:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="822225849075761152" id="message-822225849075761152" title="Message sent: 18-Mar-21 10:51 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/810963501794852966/822225843396935741/Clocher_Villefranche.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/810963501794852966/822225843396935741/Clocher_Villefranche.png" alt="Image attachment" title="Image: Clocher_Villefranche.png (19,39 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="832691056851550208" id="message-832691056851550208" title="Message sent: 16-Apr-21 08:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Azra&#235;l avait quitt&#233; son appartement pour se balader du c&#244;t&#233; de la vieille ville. Il faisait nuit, et elle &#233;tait &#224; moiti&#233; translucide, jusqu&#39;&#224; s&#39;approcher de l&#39;&#233;glise. Elle fit un bon de presque vingt-m&#232;tre, lorsqu&#39;elle sentit l&#39;influence magique de cette derni&#232;re</em>
+- Pft... Je d&#233;teste vraiment cet endroit.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="832697266010849330" id="message-832697266010849330" title="Message sent: 16-Apr-21 09:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Il y avait un avantage &#224; sortir de nuit dans cette ville : Il n&#39;y avait pas le bruit des gens en journ&#233;e, la mauvaise humeur des gens en journ&#233;e, et surtout pas les gens en journ&#233;e.
+
+Arian s&#39;&#233;tait arr&#234;t&#233; &#224; l&#39;&#233;glise, buvant une briquette de lait chocolat&#233; piqu&#233; chez un &#233;picier. Il y avait quelque chose l&#224;, elle ne savait pas trop quoi, mais c&#39;&#233;tait bizarre. Aussi restait-elle l&#224; &#224; observer le lieu, m&#233;ditant en sirotant sa boisson.
+Mais &#233;tait-ce vraiment plus bizarre que la meuf &#224; moiti&#233; transparente qui sautait au milieu de la route ? 
+Peut-&#234;tre. 
+Arian plissa des yeux, aspirant bruyamment avec sa paille.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/189390243676422144/87d3e3ee55cd7d14085f5bb345ddb463.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mara#3000" data-user-id="189390243676422144" style="color: rgb(123,113,207)">Kali | Nightingales [Mara]</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 09:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="832697958700810291" id="message-832697958700810291" title="Message sent: 16-Apr-21 09:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(j&#39;me sens quelque peu jug&#233;e)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="832698348179816488" id="message-832698348179816488" title="Message sent: 16-Apr-21 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Redevenant totalement opaque, Azra&#235;l soupira, puis observa Arian, en fron&#231;ant les sourcils. Lentement, elle s&#39;approcha d&#39;elle
+- Vous savez que vous avez un fant&#244;me accroch&#233; &#224; la chaussure ? 
+Ca pouvait para&#238;tre bizarre &#224; dire... Non, pas para&#238;tre. C&#39;&#233;tait totalement bizarre, &#224; 100% bizarre. Mais elle &#233;tait litt&#233;ralement la Mort : la bizarrerie, elle l&#39;avait invent&#233;</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Apr-21 09:31 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="832699619082633247" id="message-832699619082633247" title="Message sent: 16-Apr-21 09:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Arian leva le regard, haussant un sourcil. Elle fixa un instant la femme, observant sa propre chaussure, sans daigner regarder dessous un instant, avant de revenir &#224; la personne qui lui adressait la parole. Elle avait un air dubitatif sur le visage, comme si elle ne comprenait m&#234;me pas pourquoi on venait lui parler. Bon sang, elle ressemblait pas &#224; une prostitu&#233;e quand m&#234;me, si ?</em>
+
+- Je fais pas ce genre de service. Faut aller au Vieux Port pour vous payer un coup.
+
+<em>Puis, elle repris son observation de l&#39;&#233;glise, sirotant &#224; nouveau bruyamment dans sa paille, sa briquette &#224; pr&#233;sent vide.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="832700262887194665" id="message-832700262887194665" title="Message sent: 16-Apr-21 09:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Elle hausse un sourcil, quel rapport entre un fant&#244;me et la prostitution ? Et franchement, elle &#233;tait l&#224; depuis l&#39;aube de l&#39;humanit&#233;, elle savait faire la diff&#233;rence tout de m&#234;me !
+Boaf, certains clairvoyant &#233;tait vraiment pas les couteaux les plus aff&#251;t&#233;s du tiroir, elle en avait maintes fois eu la preuve.</em>
+
+- Bon, votre fant&#244;me ne daigne m&#234;me pas de me r&#233;pondre, &#231;a doit &#234;tre un Naufrag&#233;. (DeathStranding/20 et c&#39;est volontaire)
+
+<em>Elle haussa les &#233;paules</em>
+
+- Et vu que vous vous en foutez, je me permets.
+
+<em>Elle tendit la main devant elle et sa faux d&#39;ombre se condensa pour appara&#238;tre dans sa main</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 09:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="832701825262026821" id="message-832701825262026821" title="Message sent: 16-Apr-21 09:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Arian allait lui r&#233;pondre &quot;Mais putain de merde&quot; et sans doute l&#39;insulter pour lui casser les couilles, avant d&#39;&#234;tre interrompue. Par une putain de faux. La jeune femme fit la premi&#232;re chose qui lui vint en r&#233;flexe.
+
+Azra&#235;l se prit une briquette de lait chocolat&#233; vide dans la t&#234;te.
+
+La SDF avait recul&#233; de 5 pas juste apr&#232;s, se mettant dans une garde de parfait amateur en combat. C&#39;&#233;tait pas de tout intimidant, mais Arian n&#39;&#233;tait clairement pas une combattante.</em>
+
+- H&#233;, pas de merde avec moi ! Je comprend rien &#224; tes conneries, alors casse-toi ! Et puis, merde, un fant&#244;me, s&#233;rieux ? C&#39;est plus Halloween.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 09:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="832702823124828170" id="message-832702823124828170" title="Message sent: 16-Apr-21 09:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah oui, elle avait VRAIMENT pas invent&#233; l&#39;eau ti&#232;de celle l&#224;&quot;
+<em>Elle fit une moue navr&#233;e</em>
+- C&#39;est Halloween tous les jours avec moi. Je l&#39;ai m&#234;me invent&#233; !
+<em>Ca c&#39;&#233;tait faux, mais la mortelle ne pourrait pas le savoir, surtout que manifestement, alors qu&#39;elle venait de faire appara&#238;tre une putain de faux, elle ne la croyait pas. Doucement, elle se rapprocha d&#39;elle</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 09:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="832705458522947604" id="message-832705458522947604" title="Message sent: 16-Apr-21 09:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- Ouais bien s&#251;r, t&#39;as aussi invent&#233; No&#235;l et J&#233;sus je pr&#233;sume.
+
+<em>Arian la regarda, non sans reculer pour maintenir la distance.</em>
+
+- Putain, h&#233;, non ! T&#39;approche pas ! Je fais des trucs que je suis pas s&#251;re de ma&#238;triser, alors arr&#234;te ta merde c&#39;est clair ?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="832706099131973733" id="message-832706099131973733" title="Message sent: 16-Apr-21 09:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">[55]
+<em>Elle fait un grand mouvement circulaire avec sa faux, et soudainement Arian se sent plus l&#233;g&#232;re. Une sorte de petite &#233;tincelle se d&#233;tache de sa chaussure, et s&#39;estompe</em>
+- No&#235;l et J&#233;sus ? 
+<em>Elle hausse un sourcil. C&#39;&#233;tait elle, &#231;a ? Aucune id&#233;e, elle avait oubli&#233;, ou alors elle &#233;tait morte</em>
+- Aucune id&#233;e, peut-&#234;tre, qui sait.
+<em>Elle fait une r&#233;v&#233;rence &#224; la jeune femme</em>
+- Je m&#39;appelle Azra&#235;l, Ange de la mort. Vous voulez une carte de visite ?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 10:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="832708112510877706" id="message-832708112510877706" title="Message sent: 16-Apr-21 10:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Arian se fige dans le mouvement. 
+Elle ne sait pas du tout ce qui vient de se passer.
+Elle n&#39;aime pas &#231;a.
+
+Du sang sort de ses bras, transper&#231;ant la peau fine de l&#39;humaine, coulant le long de ses mains, et formant des piques aux extr&#233;mit&#233;s de ses doigts..</em>
+
+- Putain, qu&#39;est-ce-que tu m&#39;as fais ? Tu m&#39;as vol&#233; mon &#226;me, ou une connerie du genre ?! Puis t&#39;es pas un ange d&#233;j&#224;, les anges dans la bible, ils ont 400 paires d&#39;yeux et ils ont autre chose &#224; foutre qu&#39;emmerder les gens sur Terre !
+
+<em>C&#39;&#233;tait compl&#232;tement accusateur. Mais Arian paniquait, et quand elle paniquait, elle &#233;tait encore moins facile &#224; vivre que d&#39;habitude.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="832715441855791165" id="message-832715441855791165" title="Message sent: 16-Apr-21 10:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- 400 Paires ? Naaan, on en a beaucoup plus en vrai. C&#39;est plus pratique pour espionner et mater sous les douches.
+<em>Elle observe la jeune femme</em>
+- Je voulais pas vous faire peur. Vous &#234;tes une clairvoyante, non ? 
+<em>Elle penche la t&#234;te sur le c&#244;t&#233;</em>
+- Plus une outbreaker, d&#39;ailleurs... Vu votre r&#233;action, &#231;a doit pas faire tr&#232;s longtemps. Et vous semblez aussi ne rien conna&#238;tre de l&#39;histoire de Ce monde, d&#39;ailleurs. Ca fait combien de temps que vous nous voyez ?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 11:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="832726203005534268" id="message-832726203005534268" title="Message sent: 16-Apr-21 11:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Arian fronce les sourcils &#224; la blague. Elle ne semblait pas tr&#232;s r&#233;ceptive &#224; cet humour. Pire. Elle <strong>jugeait</strong>.
+Dans tout les cas, il est clair que la pauvre femme ne comprend pas un mot de ce que lui raconte l&#39;autre psychopathe.</em>
+
+- Claire voyante ? Putain, je bite rien. Ok, pause, PAUSE.
+
+<em>Le sang s&#39;arr&#234;te de couler, alors que Arian l&#232;ve les deux mains, reprenant une grande respiration et reconsid&#233;rant ses rencontres nocturnes, ainsi que sa vie.</em>
+
+- J&#39;ai pas fais Bac option Histoire magique mes couilles, moi ce que je vois, c&#39;est qu&#39;une meuf &#224; moiti&#233; transparente qui agite une faux qui tue pas, et qui commence doucement &#224; me les briser. Bon, ok, d&#233;sol&#233;e pour la briquette, mais avouez que vous faites putain de flipper ! Pour ma d&#233;fense, c&#39;est pas la premi&#232;re fois qu&#39;on m&#39;attaque. Puis comment &#231;a, &quot;vous&quot;, vous &#234;tes combien de connards &#224; vous promener en essayant de buter les gens, s&#233;rieux, c&#39;est une congr&#233;gation de tueurs en s&#233;rie magiques ?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 11:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="832728471767089152" id="message-832728471767089152" title="Message sent: 16-Apr-21 11:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- Alors, g&#233;n&#233;ralement, on tue pas des gens parce que c&#39;est comme partout &#231;a sert &#224; rien de tuer et qu&#39;il y a des lois dans ce pays quand m&#234;me.
+
+<em>Elle s&#39;approche d&#39;elle en se rendant &#224; moiti&#233; translucide. Au cas o&#249;, et elle la fixe en &#233;tant super proche d&#39;elle</em>
+
+- Okay, je vais faire un rapide topos. Bienvenue petite outbreaker tu vois maintenant le vrais monde de la v&#233;rit&#233; v&#233;ritable, c&#39;est &#224; dire qu&#39;en fait il est deux fois plus grand, y&#39;a plein de gens magiques en v&#233;rit&#233; et les humains peuvent pas nous voir. Enfin, pour certains. Ca d&#233;pend des humains, et surtout des gens. Moi, par exemple, j&#39;suis une &#233;voqu&#233;e. Normalement, quand j&#39;utilise mes pouvoirs, on m&#39;voit pas. Mais toi, tu m&#39;vois, donc &#231;a fait d&#39;toi une Clairvoyante. Des humains capables de voir l&#39;Ether, aka la magie. Bref. 
+
+<em>Elle recule et fronce les sourcils</em>
+
+- Du coup en tant que clairvoyante, il faudrait que tu ailles te faire recenser &#224; la mairie d&#233;j&#224;, sinon, &#231;a risque pas d&#39;&#234;tre pratique. 
+
+<em>Elle se gratte le menton</em>
+
+- Ah, oui, &#233;videmment, y&#39;a pas d&#39;autres monde. Le paradis c&#39;est juste une r&#233;gion dans les nuages, en fait. Une sorte de cit&#233; volante un peu prout prout tr&#232;s chiante. Mais j&#39;ai &#233;t&#233; bannie comme d&#39;autre gens, et maintenant j&#39;collecte les &#226;mes. D&#39;o&#249; le fait que je me balade avec une faux magiques. Et non, je tue pas les gens, promis. Enfin, sauf si tu consid&#232;res que virer un fant&#244;me du monde des vivants c&#39;est tu&#233;. Techniquement ils sont d&#233;j&#224; morts. Mais j&#39;sais qu&#39;il existe des zombies et...
+
+<em>Elle continue de parler comme &#231;a pendant longtemps. Azra&#235;l a l&#39;air, en v&#233;rit&#233;, assez bavarde.</em>
+
+- Tu as de la chance d&#39;&#234;tre tomb&#233;e sur moi ! J&#39;suis une des rares immortelles du monde (c&#39;est faux, ils sont assez nombreux, ce qui pose suffisamment de soucis &#224; l&#39;administration invisible comme &#231;a) et je suis super gentille !</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="832731432060846091" id="message-832731432060846091" title="Message sent: 16-Apr-21 11:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- &quot;G&#233;n&#233;ralement&quot; mon cul ouais, &#231;a vous emp&#234;che pas de buter tout un groupe d&#39;humains quand &#231;a vous chante. 
+
+<em>Arian croisa les bras. Le sang avait disparus, r&#233;-absorb&#233; par son organisme, alors qu&#39;elle prenait le temps d&#39;&#233;couter la psychopathe translucide. Franchement, elle voulait se barrer, mais au moins attendre la fin des explications. Elle aura un rire &#224; la mention du recensement, pour elle, avant de hausser un sourcil. Pas &#233;tonnant qu&#39;elle soit bannie, c&#39;&#233;tait elle qui semblait prout prout sur les bords.
+..
+Putain, personne n&#39;emploie une expression aussi con en plus. Le temps qu&#39;elle se r&#233;-int&#233;resse &#224; la discussion, l&#39;Ange &#233;tait sur la fin de son monologue.</em>
+
+- Bon, super. Je penserais &#224; toi pour ma prochaine pri&#232;re. Bon, si je r&#233;sume; je vais dor&#233;navant voir et croiser d&#39;autres connards magiques pompeux ? Parfait. Est-ce-que je peux attraper l&#39;encul&#233; qui m&#39;a fait &#231;a pour lui casser la gueule et que &#231;a inverse le truc ? Ou c&#39;est genre permanent ?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Apr-21 12:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="832737487150645260" id="message-832737487150645260" title="Message sent: 17-Apr-21 12:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Elle fronce les sourcils</em>
+- Buter un groupe d&#39;humain ? C&#39;est pas le genre de la plupart des Invisibles, j&#39;t&#39;avoue. La plupart du temps, on se contente de vivre avec vous, ou vous ignorez. Ca d&#233;pend du contexte. .. Mais je suppose que tu fais r&#233;f&#233;rence &#224; la fa&#231;on dont tu as eu ton Outbreak.
+<em>Elle soupire</em>
+- J&#39;irai jeter un coup d&#39;oeil &#224; ton cas, en tout cas.  Et magique pompeux ? D&#39;autres ? J&#39;ai l&#39;air pompeuse ? Y&#39;a certains magiques &#233;gocentriques, mais moi j&#39;t&#39;aine juste ici et l&#224; pour manger des &#226;mes. Enfin, c&#39;est qu&#39;une image. Mais, non, malheureusement tu vas nous voir &#224; jamais. En fait, le monde a toujours &#233;t&#233; comme &#231;a, t&#39;as juste jamais voulu le voir. Une expression connue c&#39;est &quot;L&#39;humain ne peut voir que ce qu&#39;il veut voir&quot;. Maintenant, tu veux nous voir. Enfin, c&#39;est la th&#233;orie.
+<em>Elle hausse les &#233;paules</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">17-Apr-21 12:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="832739530913087548" id="message-832739530913087548" title="Message sent: 17-Apr-21 12:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Arian soupir &#224; la derni&#232;re d&#233;claration, secouant la t&#234;te.</em>
+
+- Merde. Bon, je lui p&#233;terais la gueule quand m&#234;me, y&#39;a pas de raison.
+
+<em>Elle se reprend, haussant les &#233;paules.</em>
+
+- Ouais. C&#39;est pas la pire expression que j&#39;ai pu entendre de ma vie, mais &#231;a reste &#224; chier. Bon, je vous pr&#233;viens tout de suite, si vous me sortez une connerie du genre &quot;On est tous amis dans notre monde merveilleux&quot;, je marche pas. 
+
+<em>Puis, sur cela, Arian tourna les talons et ... Partit. 
+Sans demander son reste. Ni m&#234;me dire au revoir. C&#39;est terrible, la jeunesse, y&#39;a plus de respect pour les anciens..</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Apr-21 12:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="832741003101339679" id="message-832741003101339679" title="Message sent: 17-Apr-21 12:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Azrael la suit en se teleportant</em>
+- Nan, y&#39;a pas que des gentils. D&#233;j&#224;, un des m&#233;tiers les plus en vogue c&#39;est mercenaire. &#199;a donne l&#39;id&#233;e. Tu sais qui c&#39;est, le mec qui t&#39;as Outbreak ? Enfin, jveux dire. A quoi il ressemble quoi.
+Je sais que certains groupes s&#39;amusent &#224; faire des outbreak aux humains. Perso jsuis pas hyper fan du d&#233;lire.
+<em>Elle disait cela en haussant les &#233;paules</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">17-Apr-21 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="832743908340924427" id="message-832743908340924427" title="Message sent: 17-Apr-21 12:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- Si je le savais, j&#39;aurais d&#233;j&#224; demand&#233; des infos aux autres.
+
+<em>Elle n&#39;explicite pas, se tournant simplement vers Azra&#235;l, plissant les yeux.</em>
+
+- Mais casse-toi en fait. Je t&#39;ai rien demand&#233;.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Apr-21 07:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="833030188983779359" id="message-833030188983779359" title="Message sent: 17-Apr-21 07:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>L&#39;immortelle soupira</em>
+- Aux autres ? Genre ? Tu sais, tu devrais pas essayer de &quot;cacher&quot; &#231;a, et de te cacher des autres Invi&#39;. Parce que t&#39;es qu&#39;un b&#233;b&#233; Clairvoyant, et t&#39;as aucune protection. Ca risque de t&#39;apporter que des emmerdes.
+<em>Elle hausses les &#233;paules</em>
+- Apr&#232;s libre &#224; toi de m&#39;ignorer, si tu meurs, j&#39;irais juste r&#233;colter ton &#226;me et je te ferai la le&#231;on &#224; ce moment l&#224;.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/219549917893361664/9436b90e62553915aad070bc5ae2bbb3.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Choupa#5200" data-user-id="219549917893361664" style="color: rgb(255,214,162)">Arian John (aka Crash Test Bot)</span>
+
+
+        <span class="chatlog__timestamp">17-Apr-21 07:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="833031558796541952" id="message-833031558796541952" title="Message sent: 17-Apr-21 07:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- Les autres, les gens normaux, ceux qui voient pas ces conneries &#224; longueur de journ&#233;e et qu&#39;on vient pas emmerder pour dire de la merde.
+Alors on se reverra &#224; ma mort. Pour l&#39;instant, je vais me d&#233;merder. Sans toi. Surtout sans toi.
+
+<em>Arian se casse &#224; nouveau, reprenant sa route.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/832691055845179402/2329d33c5e89a43202cbea1b501a4eea.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Azra&#235;l Blakes#0000" data-user-id="832691055845179402" style="">Azra&#235;l Blakes</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Apr-21 08:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="833041033783803955" id="message-833041033783803955" title="Message sent: 17-Apr-21 08:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Elle hausse les &#233;paules, plut&#244;t insatisfaite</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 23 message(s)</div>
+</div>
+
+</body>
+
+</html>
