@@ -1,3 +1,5 @@
+[CONTEXTE COMPLET](https://sites.google.com/view/la-bibliotheque-infinie/accueil)
+
 # Contexte
 - [Info discord](Bibliothèque_Infinie/La bibliothèque infinie - ─────『CONTEXTE』 ───── - ☝╏info-discord.html)
 - [Compendium](Bibliothèque_Infinie/La bibliothèque infinie - ─────『CONTEXTE』 ───── - 💻╏compendium.html)
